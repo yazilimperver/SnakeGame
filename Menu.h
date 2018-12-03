@@ -10,17 +10,32 @@
 
 #include <MenuContent.h>
 
+// TODO: Implement this using callbacks
+class IMenuLister
+{
+public:
+	virtual void menuItemSelected(const std::string& menuId) = 0;
+};
+
+/// Just enough menu :)
 class Menu
 {
 public:
 	Menu();
 	MenuContent& getManagedMenu();
-	void display();
 	void setStartPosition(int startRow, int centerCol);
+	void setListener(IMenuLister* val);
 
 	/// Calculate the menu metrics that will be used for display
 	void calculateMenuMetrics();
+	void update();
+	void display();
+	void reset();
 private:
+	void displayMenuItems();
+
+	/// Update menu display
+	bool mUpdateDisplay = true;
 
 	/// Menu metrics that will be used for display
 	int mWidth = 0;
@@ -34,6 +49,9 @@ private:
 
 	/// Currently active menu
 	MenuContent* mActiveMenu = nullptr;
+
+	/// Menu listener
+	IMenuLister* mListener = nullptr;
 };
 
 #endif // MENU_H__

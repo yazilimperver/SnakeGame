@@ -3,6 +3,7 @@
 #include <Color.h>
 #include <ConsoleUtil.h>
 #include <iostream>
+#include <conio.h>
 
 Menu::Menu()
 {
@@ -14,7 +15,15 @@ MenuContent& Menu::getManagedMenu()
 	return mManagedMenu;
 }
 
-void Menu::display()
+void Menu::reset()
+{
+	mActiveMenu = &mManagedMenu;
+	mActiveMenu->mSelectedItem = 0;
+	mUpdateDisplay = true;
+	this->displayMenuItems();
+}
+
+void Menu::displayMenuItems()
 {
 	Color colorBack = Color::eColor_darkblue;
 	Color colorFront = Color::eColor_blue;
@@ -39,7 +48,7 @@ void Menu::display()
 		//////////////////////////////
 
 		// Title
-		COORD cursor{mStartColumn, mStartRow};
+		COORD cursor{ static_cast<short>(mStartColumn), static_cast<short>(mStartRow)};
 		cursor.Y++;
 		moveCursor(mStartColumn, cursor.Y);
 
@@ -114,6 +123,11 @@ void Menu::setStartPosition(int startRow, int centerCol)
 	mCenterColumn = centerCol;
 }
 
+void Menu::setListener(IMenuLister* val)
+{
+	mListener = val;
+}
+
 void Menu::calculateMenuMetrics()
 {
 	if (nullptr != mActiveMenu)
@@ -122,7 +136,7 @@ void Menu::calculateMenuMetrics()
 
 		for (const auto& item : mActiveMenu->mItems)
 		{
-			if (int length = item.mTitle.size(); length > mWidth)
+			if (int length = static_cast<int>(item.mTitle.size()); length > mWidth)
 			{
 				mWidth = length;
 			}
@@ -130,10 +144,48 @@ void Menu::calculateMenuMetrics()
 
 		// Now add size for other items (margin, parenthesizes)
 		mWidth += 6;
-		mWidth = std::max<int>(mWidth, mActiveMenu->mTitle.size() + 2);
+		mWidth = std::max<int>(mWidth, static_cast<int>(mActiveMenu->mTitle.size())+ 2);
 		mWidth += 2;
 
 		// Other metrics
 		mStartColumn = mCenterColumn - mWidth / 2;
+	}
+}
+
+void Menu::update()
+{
+	if (nullptr != mActiveMenu)
+	{
+		int input = _getch();
+
+		if (input == KEY_UP)
+		{
+			mActiveMenu->mSelectedItem
+				= (mActiveMenu->mSelectedItem + static_cast<int>(mActiveMenu->mItems.size()) - 1) % static_cast<int>(mActiveMenu->mItems.size());
+			mUpdateDisplay = true;
+			this->displayMenuItems();
+		}
+		else if (input == KEY_DOWN)
+		{
+			mActiveMenu->mSelectedItem = (mActiveMenu->mSelectedItem + 1) % mActiveMenu->mItems.size();
+			mUpdateDisplay = true;
+			this->displayMenuItems();
+		}
+		else if (input == ' ')
+		{
+			if (nullptr != mListener)
+			{
+				mListener->menuItemSelected(mActiveMenu->mItems[mActiveMenu->mSelectedItem].mTitle);
+			}
+		}
+	}
+}
+
+void Menu::display()
+{
+	if (true == mUpdateDisplay)
+	{
+		this->displayMenuItems();
+		mUpdateDisplay = false;
 	}
 }

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="ConsoleCellItem.cpp">
+      <Filter>ConsoleCore</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleInfo.cpp">
+      <Filter>ConsoleCore</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleLevel.cpp">
+      <Filter>ConsoleCore</Filter>
+    </ClCompile>
+    <ClCompile Include="LogoDisplayer.cpp">
+      <Filter>ConsoleCore</Filter>
+    </ClCompile>
+    <ClCompile Include="MovableItem.cpp">
+      <Filter>ConsoleCore</Filter>
+    </ClCompile>
+    <ClCompile Include="LoopManager.cpp">
+      <Filter>LoopManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleSnakeGame.cpp">
+      <Filter>SnakeGameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleUtil.cpp">
+      <Filter>SnakeGameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>SnakeGameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>SnakeGameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>SnakeGameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeItem.cpp">
+      <Filter>SnakeGameFiles</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Color.h">
+      <Filter>ConsoleCore</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleCellData.h">
+      <Filter>ConsoleCore</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleCellItem.h">
+      <Filter>ConsoleCore</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleInfo.h">
+      <Filter>ConsoleCore</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleLevel.h">
+      <Filter>ConsoleCore</Filter>
+    </ClInclude>
+    <ClInclude Include="LogoDisplayer.h">
+      <Filter>ConsoleCore</Filter>
+    </ClInclude>
+    <ClInclude Include="MovableItem.h">
+      <Filter>ConsoleCore</Filter>
+    </ClInclude>
+    <ClInclude Include="LoopManager.h">
+      <Filter>LoopManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleSnakeGame.h">
+      <Filter>SnakeGameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleUtil.h">
+      <Filter>SnakeGameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMode.h">
+      <Filter>SnakeGameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>SnakeGameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuContent.h">
+      <Filter>SnakeGameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>SnakeGameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerData.h">
+      <Filter>SnakeGameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeGameScreen.h">
+      <Filter>SnakeGameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeItem.h">
+      <Filter>SnakeGameFiles</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="ConsoleCore">
+      <UniqueIdentifier>{bbcebe97-0cc1-43d1-8e6a-96b4f15743ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LoopManagement">
+      <UniqueIdentifier>{3982a4c1-7df7-41c9-9408-5b82ddbe3406}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SnakeGameFiles">
+      <UniqueIdentifier>{4ef0fdf4-dc83-48a2-9966-647da5b959d4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

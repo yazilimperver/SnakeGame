@@ -36,6 +36,21 @@ void ConsoleSnakeGame::initialize()
 
 	mGameStartClock = chrono::high_resolution_clock::now();
 	mCurrentGameTime = 0;
+
+	// Menu initialization
+	// TODO: We may populate this from json/xml
+	MenuContent& topMenu = mMainMenu.getManagedMenu();
+	topMenu.mTitle = "~ MAIN MENU ~";
+	topMenu.mParent = nullptr;
+	topMenu.mSelectedItem = 0;
+	topMenu.mItems.push_back(MenuContent{ "SINGLE PLAYER", 0, &topMenu });
+	topMenu.mItems.push_back(MenuContent{ "MULTI PLAYER", 0, &topMenu });
+	topMenu.mItems.push_back(MenuContent{ "OPTIONS", 0, &topMenu });
+	topMenu.mItems.push_back(MenuContent{ "QUIT", 0, &topMenu });
+
+	mMainMenu.setStartPosition(16, 60);
+	mMainMenu.calculateMenuMetrics();
+	mMainMenu.setListener(this);
 }
 
 void ConsoleSnakeGame::update(float tickTime)
@@ -64,6 +79,28 @@ void ConsoleSnakeGame::update(float tickTime)
 	{
 		this->displayGameOver(tickTime);
 	}
+	else if (SnakeGameScreen::eGAME_SCREEN_MENU == mCurrentGameScreen)
+	{
+		mMainMenu.update();
+	}
+}
+
+void ConsoleSnakeGame::display(float tickTime)
+{
+	if (SnakeGameScreen::eGAME_SCREEN_GAME == mCurrentGameScreen)
+	{
+		// Display fps at top right	
+		setColor(Color::eColor_black, Color::eColor_green);
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), COORD{ 90, 0 });
+		cout << "FPS : " << mLoopManager.getLastFPS() << "    ";
+
+		// Display console info
+		mConsoleInfo.displayConsoleInfo();
+	}
+	else if (SnakeGameScreen::eGAME_SCREEN_MENU == mCurrentGameScreen)
+	{
+		mMainMenu.display();
+	}
 }
 
 bool ConsoleSnakeGame::switchToGameScreen(SnakeGameScreen newScreen)
@@ -89,11 +126,19 @@ bool ConsoleSnakeGame::switchToGameScreen(SnakeGameScreen newScreen)
 		}
 		break;
 	case SnakeGameScreen::eGAME_SCREEN_MENU:
-		if (SnakeGameScreen::eGAME_SCREEN_SPLASH == mCurrentGameScreen)
+		if (SnakeGameScreen::eGAME_SCREEN_SPLASH == mCurrentGameScreen
+			||
+			SnakeGameScreen::eGAME_SCREEN_GAMEOVER == mCurrentGameScreen)
 		{
-			mCurrentGameScreen = SnakeGameScreen::eGAME_SCREEN_MENU;
+			clearConsole();
 
-			/// TODO
+			/// Set color
+			setColor(Color::eColor_black, Color::eColor_green);
+			LogoDisplayer::DisplaySnakeLogo();
+
+			mMainMenu.reset();
+
+			mCurrentGameScreen = SnakeGameScreen::eGAME_SCREEN_MENU;
 			isSwitchSuccess = true;
 		}
 		break;
@@ -155,7 +200,7 @@ void ConsoleSnakeGame::displayGameOver(float tickTime)
 	if (true == displayText)
 	{
 		displayCenteredText("GAME OVER!", 126, 15);
-		displayCenteredText("Please Press Space Bar to restart menu!", 126, 36);
+		displayCenteredText("Please Press Space Bar to return menu!", 126, 36);
 
 		// TODO: Also there are alive players!
 		if (mPlayers.size() > 1)
@@ -174,14 +219,29 @@ void ConsoleSnakeGame::displayGameOver(float tickTime)
 		displayText = true;
 
 		// restart game
-		this->switchToGameScreen(SnakeGameScreen::eGAME_SCREEN_GAME);
+		this->switchToGameScreen(SnakeGameScreen::eGAME_SCREEN_MENU);
 	}
+}
+
+void ConsoleSnakeGame::menuItemSelected(const std::string& menuId)
+{
+	if ("QUIT" == menuId)
+	{
+		exit(0);
+	}
+	else if ("SINGLE PLAYER" == menuId)
+	{
+		/// Clear console
+		clearConsole();
+
+		/// Start game
+		switchToGameScreen(SnakeGameScreen::eGAME_SCREEN_GAME);
+	}		
 }
 
 void ConsoleSnakeGame::prepareGameScreen()
 {
 	/// First display level (order is important for initialization)
-	/// TODO: add layer management
 	mLevel.display();
 
 	/// Provide snake initial position
@@ -212,11 +272,6 @@ void ConsoleSnakeGame::updateScores()
 			}
 		}
 	}
-}
-
-void ConsoleSnakeGame::display()
-{
-	//snake.display();
 }
 
 void ConsoleSnakeGame::displayLogo()
@@ -271,73 +326,7 @@ void ConsoleSnakeGame::displayGameLogo()
 		}
 	} while (getNonBlockingChar() != ' ');
 	
-	// Populate menu
-	displayMainMenu();
-
-
 	/// Clear console
 	clearConsole();
-}
-
-void ConsoleSnakeGame::displayMainMenu()
-{
-	// TODO: We may populate this from json/xml
-	MenuContent& topMenu = mMainMenu.getManagedMenu();
-	topMenu.mTitle = "~ MAIN MENU ~";
-	topMenu.mParent = nullptr;
-	topMenu.mSelectedItem = 0;
-	topMenu.mItems.push_back(MenuContent{ "SINGLE PLAYER", 0, &topMenu });
-	topMenu.mItems.push_back(MenuContent{ "MULTI PLAYER", 0, &topMenu });
-	topMenu.mItems.push_back(MenuContent{ "OPTIONS", 0, &topMenu });
-	topMenu.mItems.push_back(MenuContent{ "QUIT", 0, &topMenu });
-
-	mMainMenu.setStartPosition(16, 60);
-	mMainMenu.calculateMenuMetrics();
-	mMainMenu.display();
-
-	bool menuActive = true;
-
-	constexpr int KEY_UP = 0x48;
-	constexpr int KEY_DOWN = 0x50;
-
-	// Menu management :)
-	while (menuActive)
-	{
-		int input = _getch();
-
-		if (input == KEY_UP)
-		{
-			topMenu.mSelectedItem = (topMenu.mSelectedItem + topMenu.mItems.size() - 1) % topMenu.mItems.size();
-			mMainMenu.display();
-		}
-		else if (input == KEY_DOWN)
-		{
-			topMenu.mSelectedItem = (topMenu.mSelectedItem + 1) % topMenu.mItems.size();
-			mMainMenu.display();
-		}
-		else if (input == ' ')
-		{
-			// start game
-			if (0 == topMenu.mSelectedItem)
-			{
-				menuActive = false;
-			}
-			else if (3 == topMenu.mSelectedItem)
-			{
-				exit(0);
-			}
-		}
-	}
-}
-
-void ConsoleSnakeGame::display(float tickTime)
-{
-	// Display fps at top right	
-	setColor(Color::eColor_black, Color::eColor_green);
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), COORD{ 90, 0 });
-	cout << "FPS : " << mLoopManager.getLastFPS() << "    ";
-
-	// Display console info
-	mConsoleInfo.displayConsoleInfo();
 }
 

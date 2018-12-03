@@ -241,7 +241,7 @@ bool SnakeItem::isGameOver() const
 
 int SnakeItem::getScore() const
 {
-	return mSnakeBodyContent.size();
+	return static_cast<int>(mSnakeBodyContent.size());
 }
 
 void SnakeItem::assignPlayer(const Player& player)

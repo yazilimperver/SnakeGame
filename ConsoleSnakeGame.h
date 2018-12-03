@@ -18,26 +18,29 @@
 
 class ConsoleSnakeGame
 	: public IApplication
+	, public IMenuLister
 {
 public:
 	ConsoleSnakeGame(const LoopManager& loopManager);
 
+	/// One time initializations
 	void initialize();
 
-	void display();	
 	void display(float tickTime);
 	void update(float tickTime);
 
 	bool switchToGameScreen(SnakeGameScreen newScreen);
 
 	void displayGameOver(float tickTime);
+
 protected:
 	void displayLogo();
 	void displayGameLogo();
-	void displayMainMenu();
 
 	void prepareGameScreen();
 	void updateScores();
+
+	virtual void menuItemSelected(const std::string& menuId) override;
 
 	/// Registered players
 	std::vector<std::shared_ptr<Player>> mRegisteredPlayers;
