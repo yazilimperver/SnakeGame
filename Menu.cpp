@@ -162,117 +162,123 @@ void Menu::update()
 {
 	if (nullptr != mActiveMenu)
 	{
-		int input = _getch();
+		if (true == mActiveMenu->mIsInputField)
+		{
+			inputMenuUpdate();
+		}
+		else
+		{
+			int input = getNonBlockingChar();
 
-		if (input == KEY_UP)
-		{
-			mActiveMenu->mSelectedItem
-				= (mActiveMenu->mSelectedItem + static_cast<int>(mActiveMenu->mItems.size()) - 1) % static_cast<int>(mActiveMenu->mItems.size());
-			mUpdateDisplay = true;
-			this->displayMenuItems();
+			if (input == KEY_UP)
+			{
+				mActiveMenu->mSelectedItem
+					= (mActiveMenu->mSelectedItem + static_cast<int>(mActiveMenu->mItems.size()) - 1) % static_cast<int>(mActiveMenu->mItems.size());
+				mUpdateDisplay = true;
+				this->displayMenuItems();
+			}
+			else if (input == KEY_DOWN)
+			{
+				mActiveMenu->mSelectedItem = (mActiveMenu->mSelectedItem + 1) % mActiveMenu->mItems.size();
+				mUpdateDisplay = true;
+				this->displayMenuItems();
+			}
+			// Return to previous menu
+			else if (input == KEY_ESCAPE)
+			{
+				// Go back to parent menu if exist
+				if (nullptr != mActiveMenu->mParent)
+				{
+					if (nullptr != mListener)
+					{
+						mListener->clearMenuBackground();
+					}
+
+					// Check if menu has children if so open them
+					this->activateMenuItem(*mActiveMenu->mParent);
+				}
+			}
+			else if (input == ' ')
+			{
+				std::string menuActivated{ "" };
+				if (mActiveMenu->mItems[mActiveMenu->mSelectedItem].mItems.size() > 0)
+				{
+					if (nullptr != mListener)
+					{
+						mListener->clearMenuBackground();
+					}
+
+					// Check if menu has children if so open them
+					this->activateMenuItem(mActiveMenu->mItems[mActiveMenu->mSelectedItem]);
+
+					// Input menu update
+					if (true == mActiveMenu->mIsInputField)
+					{
+						overallInput = "";
+						currentSize = 0;
+					}
+
+					menuActivated = mActiveMenu->mTitle;
+				}
+				else
+				{
+					menuActivated = mActiveMenu->mItems[mActiveMenu->mSelectedItem].mTitle;
+				}
+
+				if (nullptr != mListener)
+				{
+					mListener->menuItemSelected(menuActivated);
+				}
+			}
 		}
-		else if (input == KEY_DOWN)
+	}
+}
+
+void Menu::inputMenuUpdate()
+{
+	// if it is input then wait for user to enter name
+	if (true == mActiveMenu->mIsInputField)
+	{
+		COORD start{ static_cast<short>(mStartColumn + 6 + overallInput.size()), static_cast<short>(mStartRow + 3) };
+		moveCursor(start);
+		
+		int maxLength{ static_cast<int>(mActiveMenu->mItems[0].mTitle.size()) };
+		int input{ ' ' };
+		std::locale loc;
+
+		input = getNonBlockingChar();
+
+		// inform parent
+		if (input == KEY_RETURN)
 		{
-			mActiveMenu->mSelectedItem = (mActiveMenu->mSelectedItem + 1) % mActiveMenu->mItems.size();
-			mUpdateDisplay = true;
-			this->displayMenuItems();
+			mListener->menuItemSelected(mActiveMenu->mTitle + "=" + overallInput);
+			this->activateMenuItem(*mActiveMenu->mParent);
 		}
-		// Return to previous menu
+		// no change return parent
 		else if (input == KEY_ESCAPE)
 		{
-			// Go back to parent menu if exist
-			if (nullptr != mActiveMenu->mParent)
-			{
-				if (nullptr != mListener)
-				{
-					mListener->clearMenuBackground();
-				}
-
-				// Check if menu has children if so open them
-				this->activateMenuItem(*mActiveMenu->mParent);
-			}
-		}
-		else if (input == ' ')
-		{
-			std::string menuActivated{ "" };
-			if (mActiveMenu->mItems[mActiveMenu->mSelectedItem].mItems.size() > 0)
-			{
-				if (nullptr != mListener)
-				{
-					mListener->clearMenuBackground();
-				}
-
-				// Check if menu has children if so open them
-				this->activateMenuItem(mActiveMenu->mItems[mActiveMenu->mSelectedItem]);
-
-				// if it is input then wait for user to enter name
-				if (true == mActiveMenu->mIsInputField)
-				{
-					COORD start{ static_cast<short>(mStartColumn + 6), static_cast<short>(mStartRow + 3) };
-					moveCursor(start);
-
-					std::string overallInput{ "" };
-
-					int maxLength{ static_cast<int>(mActiveMenu->mItems[0].mTitle.size()) };
-					int currentSize{ 0 };
-					int input{ ' ' };
-					std::locale loc;
-					
-					while (true)
-					{
-						input = _getch();
-
-						// inform parent
-						if (input == KEY_RETURN)
-						{
-							mListener->menuItemSelected(mActiveMenu->mTitle + "=" + overallInput);
-						}
-						// no change return parent
-						else if (input == KEY_ESCAPE)
-						{
-							if (nullptr != mListener)
-							{
-								mListener->clearMenuBackground();
-							}
-
-							// Check if menu has parent if so open them
-							if (nullptr != mActiveMenu->mParent)
-							{
-								this->activateMenuItem(*mActiveMenu->mParent);
-							}
-
-							break;
-						}
-						else if (currentSize > 0 && input == '\b')
-						{
-							// remove last character
-							if (!overallInput.empty())
-							{
-								overallInput.erase(std::prev(overallInput.end()));
-								std::cout << "\b \b";
-								currentSize--;
-							}
-						}
-						else if (currentSize < maxLength && std::isalnum(static_cast<char>(input), loc))
-						{
-							std::cout << static_cast<char>(input);
-							overallInput += input;
-							currentSize++;
-						}
-					}
-				}
-
-				menuActivated = mActiveMenu->mTitle;
-			}
-			else
-			{
-				menuActivated = mActiveMenu->mItems[mActiveMenu->mSelectedItem].mTitle;
-			}
-
 			if (nullptr != mListener)
 			{
-				mListener->menuItemSelected(menuActivated);
+				mListener->clearMenuBackground();
 			}
+
+			this->activateMenuItem(*mActiveMenu->mParent);
+		}
+		else if (currentSize > 0 && input == '\b')
+		{
+			// remove last character
+			if (!overallInput.empty())
+			{
+				overallInput.erase(std::prev(overallInput.end()));
+				std::cout << "\b \b";
+				currentSize--;
+			}
+		}
+		else if (currentSize < maxLength && std::isalnum(static_cast<char>(input), loc))
+		{
+			std::cout << static_cast<char>(input);
+			overallInput += input;
+			currentSize++;
 		}
 	}
 }

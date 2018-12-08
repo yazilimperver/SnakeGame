@@ -30,9 +30,12 @@ public:
 	/// Calculate the menu metrics that will be used for display
 	void calculateMenuMetrics();
 	void update();
+
 	void display();
 	void reset();
 private:
+
+	void inputMenuUpdate();
 	void displayMenuItems();
 	void activateMenuItem(MenuContent& newMenu);
 
@@ -45,6 +48,10 @@ private:
 
 	int mCenterColumn = 0;
 	int mStartRow = 0;
+
+	/// Input menu members
+	std::string overallInput{ "" };
+	int currentSize{ 0 };
 
 	/// The menu that will be managed
 	MenuContent mManagedMenu;
