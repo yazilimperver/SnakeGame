@@ -21,7 +21,7 @@ void SnakeItem::initialize(const ConsoleCellData& initialCellInfo)
 	mCurrentDirection = DIRECTION_RIGHT;
 	mInitiatedDirection = DIRECTION_RIGHT;
 	mAccumulatedTime = 0;
-	mMoveTimeout = 500;
+	mMoveTimeout = cInitialTimeOut;
 	mIgnoreInput = false;
 	mAddBodyPart = false;
 	mMovementLeftToAdd = 0;
@@ -55,7 +55,7 @@ void SnakeItem::display()
 	this->clearTail();
 
 	// set the color of snake according to color chosen by player
-	setColor(Color::eColor_black, mPlayer.GetPlayerData().mPlayerColor);
+	setColor(Color::eColor_black, mPlayer->GetPlayerData().mPlayerColor);
 
 	for (size_t i = 0; i < mSnakeBody.size(); i++)
 	{
@@ -244,9 +244,9 @@ int SnakeItem::getScore() const
 	return static_cast<int>(mSnakeBodyContent.size());
 }
 
-void SnakeItem::assignPlayer(const Player& player)
+void SnakeItem::assignPlayer(Player& player)
 {
-	mPlayer = player;
+	mPlayer = &player;
 }
 
 void SnakeItem::clearTail()

@@ -17,6 +17,9 @@ struct MenuContent
 	/// Title of menu
 	std::string mTitle = "MENU";
 
+	/// Is input field
+	bool mIsInputField = false;
+
 	/// The chosen item in this menu
 	int mSelectedItem = 0;
 
@@ -25,6 +28,17 @@ struct MenuContent
 
 	/// Menu items
 	std::vector<MenuContent> mItems;
+
+	MenuContent& operator=(const MenuContent& rhs)
+	{
+		mTitle = rhs.mTitle;
+		mIsInputField = rhs.mIsInputField;
+		mSelectedItem = rhs.mSelectedItem;
+		mParent = rhs.mParent;
+		mItems = rhs.mItems;
+
+		return *this;
+	}
 };
 
 #endif // MENUCONTENT_H__

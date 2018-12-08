@@ -36,21 +36,9 @@ void ConsoleSnakeGame::initialize()
 
 	mGameStartClock = chrono::high_resolution_clock::now();
 	mCurrentGameTime = 0;
+	snake.assignPlayer(mPlayers[0]);
 
-	// Menu initialization
-	// TODO: We may populate this from json/xml
-	MenuContent& topMenu = mMainMenu.getManagedMenu();
-	topMenu.mTitle = "~ MAIN MENU ~";
-	topMenu.mParent = nullptr;
-	topMenu.mSelectedItem = 0;
-	topMenu.mItems.push_back(MenuContent{ "SINGLE PLAYER", 0, &topMenu });
-	topMenu.mItems.push_back(MenuContent{ "MULTI PLAYER", 0, &topMenu });
-	topMenu.mItems.push_back(MenuContent{ "OPTIONS", 0, &topMenu });
-	topMenu.mItems.push_back(MenuContent{ "QUIT", 0, &topMenu });
-
-	mMainMenu.setStartPosition(16, 60);
-	mMainMenu.calculateMenuMetrics();
-	mMainMenu.setListener(this);
+	populateGameMenu();
 }
 
 void ConsoleSnakeGame::update(float tickTime)
@@ -91,7 +79,7 @@ void ConsoleSnakeGame::display(float tickTime)
 	{
 		// Display fps at top right	
 		setColor(Color::eColor_black, Color::eColor_green);
-		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), COORD{ 90, 0 });
+		moveCursor(90, 0);
 		cout << "FPS : " << mLoopManager.getLastFPS() << "    ";
 
 		// Display console info
@@ -223,20 +211,76 @@ void ConsoleSnakeGame::displayGameOver(float tickTime)
 	}
 }
 
+void ConsoleSnakeGame::clearMenuBackground()
+{
+	clearConsole();
+
+	/// Set color
+	setColor(Color::eColor_black, Color::eColor_green);
+	LogoDisplayer::DisplaySnakeLogo();
+}
+
 void ConsoleSnakeGame::menuItemSelected(const std::string& menuId)
 {
 	if ("QUIT" == menuId)
 	{
 		exit(0);
 	}
-	else if ("SINGLE PLAYER" == menuId)
+	else if ("TRON MODE" == menuId)
 	{
 		/// Clear console
 		clearConsole();
 
 		/// Start game
+		mGameMode = GameMode::eGameMode_Tron;
 		switchToGameScreen(SnakeGameScreen::eGAME_SCREEN_GAME);
-	}		
+	}
+	else if ("SNAKE MODE" == menuId)
+	{
+		/// Clear console
+		clearConsole();
+
+		/// Start game
+		mGameMode = GameMode::eGameMode_Snake;
+		switchToGameScreen(SnakeGameScreen::eGAME_SCREEN_GAME);
+	}
+	// Colors
+	else if ("RED" == menuId)
+	{
+		mPlayers[0].GetPlayerData().mPlayerColor = Color::eColor_red;
+	}
+	else if ("GREEN" == menuId)
+	{
+		mPlayers[0].GetPlayerData().mPlayerColor = Color::eColor_green;
+	}
+	else if ("BLUE" == menuId)
+	{
+		mPlayers[0].GetPlayerData().mPlayerColor = Color::eColor_blue;
+	}
+	else if ("CYAN" == menuId)
+	{
+		mPlayers[0].GetPlayerData().mPlayerColor = Color::eColor_cyan;
+	}
+	else if ("YELLOW" == menuId)
+	{
+		mPlayers[0].GetPlayerData().mPlayerColor = Color::eColor_yellow;
+	}
+	else if ("PURPLE" == menuId)
+	{
+		mPlayers[0].GetPlayerData().mPlayerColor = Color::eColor_purple;
+	}
+	else if ("GRAY" == menuId)
+	{
+		mPlayers[0].GetPlayerData().mPlayerColor = Color::eColor_gray;
+	}
+	else if ("WHITE" == menuId)
+	{
+		mPlayers[0].GetPlayerData().mPlayerColor = Color::eColor_white;
+	}
+	else if (menuId.find('=') != menuId.npos)
+	{
+		mPlayers[0].GetPlayerData().mName = menuId.substr(menuId.find('=') + 1);
+	}
 }
 
 void ConsoleSnakeGame::prepareGameScreen()
@@ -272,6 +316,47 @@ void ConsoleSnakeGame::updateScores()
 			}
 		}
 	}
+}
+
+void ConsoleSnakeGame::populateGameMenu()
+{
+	// Menu initialization
+	MenuContent& topMenu = mMainMenu.getManagedMenu();
+	topMenu.mTitle = "~ MAIN MENU ~";
+	topMenu.mParent = nullptr;
+	topMenu.mSelectedItem = 0;
+	topMenu.mItems.push_back(MenuContent{ "SINGLE PLAYER", 0, false, &topMenu });
+	topMenu.mItems.push_back(MenuContent{ "MULTI PLAYER", 0, false, &topMenu });
+	topMenu.mItems.push_back(MenuContent{ "OPTIONS", 0, false, &topMenu });
+	topMenu.mItems.push_back(MenuContent{ "QUIT", 0, false, &topMenu });
+
+	auto& singlePlayerMenu = topMenu.mItems[0];
+	singlePlayerMenu.mItems.push_back(MenuContent{ "TRON MODE", 0, false, &singlePlayerMenu });
+	singlePlayerMenu.mItems.push_back(MenuContent{ "SNAKE MODE", 0, false, &singlePlayerMenu });
+	
+	auto& optionsMenu = topMenu.mItems[2];
+	optionsMenu.mItems.push_back(MenuContent{ "UPDATE YOUR NAME", 0, false, &optionsMenu });
+	
+	auto& nameMenu = optionsMenu.mItems[0];
+	nameMenu.mIsInputField = true;
+	nameMenu.mItems.push_back(MenuContent{ "               ", 0, false, &optionsMenu });
+
+	auto& nameInputMenu = nameMenu.mItems[0];
+	optionsMenu.mItems.push_back(MenuContent{ "UPDATE YOUR COLOR", 0, false, &optionsMenu });
+
+	auto& colorMenu = optionsMenu.mItems[1];
+	colorMenu.mItems.push_back(MenuContent{ "RED", 0, false, &optionsMenu });
+	colorMenu.mItems.push_back(MenuContent{ "GREEN", 0, false, &optionsMenu });
+	colorMenu.mItems.push_back(MenuContent{ "BLUE", 0, false, &optionsMenu });
+	colorMenu.mItems.push_back(MenuContent{ "CYAN", 0, false, &optionsMenu });
+	colorMenu.mItems.push_back(MenuContent{ "YELLOW", 0, false, &optionsMenu });
+	colorMenu.mItems.push_back(MenuContent{ "PURPLE", 0, false, &optionsMenu });
+	colorMenu.mItems.push_back(MenuContent{ "GRAY", 0, false, &optionsMenu });
+	colorMenu.mItems.push_back(MenuContent{ "WHITE", 0, false, &optionsMenu });
+	
+	mMainMenu.setStartPosition(16, 60);
+	mMainMenu.calculateMenuMetrics();
+	mMainMenu.setListener(this);
 }
 
 void ConsoleSnakeGame::displayLogo()

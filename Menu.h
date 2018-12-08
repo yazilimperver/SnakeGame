@@ -14,6 +14,7 @@
 class IMenuLister
 {
 public:
+	virtual void clearMenuBackground() = 0;
 	virtual void menuItemSelected(const std::string& menuId) = 0;
 };
 
@@ -33,6 +34,7 @@ public:
 	void reset();
 private:
 	void displayMenuItems();
+	void activateMenuItem(MenuContent& newMenu);
 
 	/// Update menu display
 	bool mUpdateDisplay = true;

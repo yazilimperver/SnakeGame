@@ -31,7 +31,7 @@ public:
 
 	int getScore() const;
 	/// Assign player to this snake
-	void assignPlayer(const Player& player);
+	void assignPlayer(Player& player);
 
 	/// Direction information
 	enum eDirection
@@ -61,7 +61,7 @@ protected:
 	bool mIsInitialized = true;
 
 	/// The player assigned to this snake item
-	Player mPlayer;
+	Player* mPlayer = nullptr;
 
 	/// Is game over
 	bool mIsGameOver = false;
@@ -93,7 +93,8 @@ protected:
 	float mAccumulatedTime = 0;
 
 	/// The item move timeout in milliseconds
-	float mMoveTimeout = 500;
+	const float cInitialTimeOut = 250.0F;
+	float mMoveTimeout = cInitialTimeOut;
 
 	/// Ignore consecutive keyboard inputs till previous one is applied
 	bool mIgnoreInput = false;

@@ -24,22 +24,22 @@ public:
 	ConsoleSnakeGame(const LoopManager& loopManager);
 
 	/// One time initializations
-	void initialize();
-
+	void initialize();	
 	void display(float tickTime);
 	void update(float tickTime);
 
 	bool switchToGameScreen(SnakeGameScreen newScreen);
 
 	void displayGameOver(float tickTime);
-
 protected:
+	void populateGameMenu();
 	void displayLogo();
 	void displayGameLogo();
 
 	void prepareGameScreen();
 	void updateScores();
 
+	virtual void clearMenuBackground() override;
 	virtual void menuItemSelected(const std::string& menuId) override;
 
 	/// Registered players

@@ -16,6 +16,7 @@ const int KEY_UP = 0x48;
 const int KEY_DOWN = 0x50;
 const int KEY_LEFT = 0x4b;
 const int KEY_RIGHT = 0x4d;
+const int KEY_BACKSPACE = 0x8;
 const int KEY_ESCAPE = 0x1b;
 const int KEY_RETURN = 0x0d;
 
