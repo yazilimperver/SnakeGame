@@ -16,7 +16,6 @@ ConsoleSnakeGame::ConsoleSnakeGame(const LoopManager& loopManager)
 	: snake{ mLevel, ConsoleCellData{ {10, 10}, '@', Color::eColor_blue, Color::eColor_black} }
 , mLoopManager(loopManager)
 {
-
 }
 
 void ConsoleSnakeGame::initialize()
@@ -39,6 +38,9 @@ void ConsoleSnakeGame::initialize()
 	snake.assignPlayer(mPlayers[0]);
 
 	populateGameMenu();
+
+	mFruitGenerator.setLevel(mLevel);
+	mFruitGenerator.setSnakeItem(snake);
 }
 
 void ConsoleSnakeGame::update(float tickTime)
@@ -57,6 +59,15 @@ void ConsoleSnakeGame::update(float tickTime)
 
 			// Update player scores
 			this->updateScores();
+
+			static float gameTime = 0;
+			gameTime += tickTime;
+
+			if (gameTime > 1000)
+			{
+				mFruitGenerator.generateFruit();
+				gameTime = 0;
+			}
 		}
 		else
 		{
@@ -139,6 +150,14 @@ bool ConsoleSnakeGame::switchToGameScreen(SnakeGameScreen newScreen)
 			this->prepareGameScreen();
 			mGameStartClock = chrono::high_resolution_clock::now();
 			isSwitchSuccess = true;
+
+			mFruitGenerator.generateFruit();
+			mFruitGenerator.generateFruit();
+			mFruitGenerator.generateFruit();
+			mFruitGenerator.generateFruit();
+			mFruitGenerator.generateFruit();
+			mFruitGenerator.generateFruit();
+			mFruitGenerator.generateFruit();
 		}
 		else if (SnakeGameScreen::eGAME_SCREEN_GAMEOVER == mCurrentGameScreen)
 		{
@@ -153,7 +172,6 @@ bool ConsoleSnakeGame::switchToGameScreen(SnakeGameScreen newScreen)
 		if (SnakeGameScreen::eGAME_SCREEN_GAME == mCurrentGameScreen)
 		{
 			mCurrentGameScreen = SnakeGameScreen::eGAME_SCREEN_GAMEOVER;
-			//this->displayGameOver();
 			isSwitchSuccess = true;
 		}
 		break;
@@ -290,6 +308,9 @@ void ConsoleSnakeGame::prepareGameScreen()
 
 	/// Provide snake initial position
 	snake.initialize(ConsoleCellData{ {10, 10}, '@', Color::eColor_blue, Color::eColor_black });
+
+	/// Update snake according to game mode
+	snake.setTronMode(mGameMode == GameMode::eGameMode_Tron?true:false);
 
 	/// Print player
 	snake.display();

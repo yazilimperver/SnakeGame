@@ -123,6 +123,10 @@ extern void setConsoleInformation(short left, short top, short width, short heig
  *             Returns -1 if no input is provided
  */
 extern int  getNonBlockingChar();
+
+
+// A Mersenne Twister algorithm which gives you good tradeoff between randoness and speed.
+extern int generateRandromNumber(int low, int high);
 #endif // CONSOLEUTIL_H__
 
 /*

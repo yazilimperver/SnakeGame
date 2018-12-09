@@ -17,12 +17,13 @@
 #include <ConsoleCellData.h>
 
  /**
-  * @brief Some level content datachar  representations
+  * @brief Some level content data char  representations
   * 
   */
 constexpr int EMPTY = 32;
 constexpr int SAND = 0;
 constexpr int WALL = 219;
+constexpr int FRUIT = 254;
 
 /**
  * @brief This class is responsible for managing console screen for game

@@ -28,11 +28,14 @@
     <ClCompile Include="Player.cpp">
       <Filter>SnakeGameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="SnakeItem.cpp">
-      <Filter>SnakeGameFiles</Filter>
-    </ClCompile>
     <ClCompile Include="InformationWindow.cpp">
       <Filter>ConsoleCore</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeModeItemGenerator.cpp">
+      <Filter>SnakeGameFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="Snake.cpp">
+      <Filter>SnakeGameFiles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -78,11 +81,17 @@
     <ClInclude Include="SnakeGameScreen.h">
       <Filter>SnakeGameFiles</Filter>
     </ClInclude>
-    <ClInclude Include="SnakeItem.h">
-      <Filter>SnakeGameFiles</Filter>
-    </ClInclude>
     <ClInclude Include="InformationWindow.h">
       <Filter>ConsoleCore</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeModeItemGenerator.h">
+      <Filter>SnakeGameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeModeItem.h">
+      <Filter>SnakeGameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="Snake.h">
+      <Filter>SnakeGameFiles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

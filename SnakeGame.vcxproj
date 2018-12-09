@@ -169,7 +169,8 @@
     <ClCompile Include="LoopManager.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="SnakeItem.cpp" />
+    <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="SnakeModeItemGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleCellItem.h" />
@@ -187,7 +188,9 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="SnakeGameScreen.h" />
-    <ClInclude Include="SnakeItem.h" />
+    <ClInclude Include="Snake.h" />
+    <ClInclude Include="SnakeModeItem.h" />
+    <ClInclude Include="SnakeModeItemGenerator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

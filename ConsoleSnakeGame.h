@@ -11,10 +11,11 @@
 #include <ConsoleLevel.h>
 #include <InformationWindow.h>
 #include <SnakeGameScreen.h>
-#include <SnakeItem.h>
+#include <Snake.h>
 #include <Player.h>
 #include <LoopManager.h>
 #include <Menu.h>
+#include <SnakeModeItemGenerator.h>
 
 class ConsoleSnakeGame
 	: public IApplication
@@ -66,7 +67,7 @@ protected:
 
 	/// Snake head
 	/// MovableItem snake;
-	SnakeItem snake;
+	Snake snake;
 
 	/// The main menu of game
 	Menu mMainMenu;
@@ -76,6 +77,9 @@ protected:
 
 	/// Loop manager that we associate our application
 	const LoopManager& mLoopManager;
+
+	/// Fruit/poison generator
+	SnakeModeItemGenerator mFruitGenerator;
 
 	/// Game start indicator
 	int mCurrentGameTime = 0;

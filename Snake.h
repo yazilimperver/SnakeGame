@@ -1,21 +1,22 @@
 /**
- * \file    SnakeItem.h
+ * \file    Snake.h
  * \date    2018/10/23
  * \author  yazilimperver
  * \brief   
  * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
-#ifndef SNAKEITEM_H__
-#define SNAKEITEM_H__
+#ifndef SNAKE_H__
+#define SNAKE_H__
 
 #include <Player.h>
 #include <ConsoleCellItem.h>
 #include <deque>
 
-class SnakeItem
+/// This class is responsible from management of snake mechanics
+class Snake
 {
 public:
-	SnakeItem(ConsoleLevel& level, const ConsoleCellData& snakeHead);
+	Snake(ConsoleLevel& level, const ConsoleCellData& snakeHead);
 
 	/// Re-initialize this snake with given data
 	void initialize(const ConsoleCellData& snakeHead);
@@ -29,9 +30,14 @@ public:
 	/// For upper management :)
 	bool isGameOver() const;
 
-	int getScore() const;
+	/// Set tron mode enabled which make snake getting longer per timeout
+	void setTronMode(bool isEnabled);
+
 	/// Assign player to this snake
 	void assignPlayer(Player& player);
+
+	/// Return snake body content
+	const std::deque<COORD>& getBody() const;
 
 	/// Direction information
 	enum eDirection
@@ -109,7 +115,7 @@ protected:
 	RECT mBorder{ 2, 3, 117, 28 };			
 };
 
-#endif // SNAKEITEM_H__
+#endif // SNAKE_H__
 
 /*
   Copyright (c) [2018] [Yazilimperver <yazilimpervergs@gmail.com>]

@@ -1,4 +1,4 @@
-#include <SnakeItem.h>	  
+#include <Snake.h>	  
 #include <windows.h>
 #include <iostream>
 #include <conio.h>
@@ -7,14 +7,14 @@
 
 int gBodyPart = 0xDB;
 
-SnakeItem::SnakeItem(ConsoleLevel& level, const ConsoleCellData& initialCellInfo)
+Snake::Snake(ConsoleLevel& level, const ConsoleCellData& initialCellInfo)
 {
 	level.getLevelBorders(mBorder);
 
 	this->initialize(initialCellInfo);
 }
 
-void SnakeItem::initialize(const ConsoleCellData& initialCellInfo)
+void Snake::initialize(const ConsoleCellData& initialCellInfo)
 {
 	mIsGameOver = false;
 
@@ -34,22 +34,16 @@ void SnakeItem::initialize(const ConsoleCellData& initialCellInfo)
 	COORD body1 = initialCellInfo.mPosition;
 	body1.X--;
 
-	COORD body2 = body1;
-	body2.X--;
-
 	mSnakeBody.push_back(initialCellInfo.mPosition);
 	mSnakeBodyContent.push_back(64);
 
 	mSnakeBody.push_back(body1);
 	mSnakeBodyContent.push_back(gBodyPart);
 
-	mSnakeBody.push_back(body2);
-	mSnakeBodyContent.push_back(gBodyPart);
-
-	mCellToClear = body2;
+	mCellToClear = body1;
 }
 
-void SnakeItem::display()
+void Snake::display()
 {
 	// First clear the last tail
 	this->clearTail();
@@ -64,7 +58,7 @@ void SnakeItem::display()
 	}
 }
 
-void SnakeItem::update(float timePassedInMsec)
+void Snake::update(float timePassedInMsec)
 {
 	if (true == mIsInitialized
 		&&
@@ -81,6 +75,7 @@ void SnakeItem::update(float timePassedInMsec)
 			mAccumulatedTime = 0;
 			mIgnoreInput = false;
 
+			// Add when tron mode is enabled
 			if (true == mIsTronModeEnabled)
 			{
 				this->addTail();
@@ -91,14 +86,14 @@ void SnakeItem::update(float timePassedInMsec)
 	}
 }
 
-void SnakeItem::addTail()
+void Snake::addTail()
 {
 	mAddBodyPart = true;
 	mMovementLeftToAdd = 1;
 	mNewBodyPartContent = gBodyPart;
 }
 
-void SnakeItem::checkInput()
+void Snake::checkInput()
 {
 	// Check keyboard
 	int readData = getNonBlockingChar();
@@ -151,7 +146,7 @@ void SnakeItem::checkInput()
 	}
 }
 
-void SnakeItem::performMove(eDirection direction)
+void Snake::performMove(eDirection direction)
 {
 	mInitiatedDirection = direction;
 	mCurrentDirection = mInitiatedDirection;
@@ -162,16 +157,16 @@ void SnakeItem::performMove(eDirection direction)
 	// Move item according to direction
 	switch (mCurrentDirection)
 	{
-	case SnakeItem::DIRECTION_LEFT:
+	case Snake::DIRECTION_LEFT:
 		newHead.X--;
 		break;
-	case SnakeItem::DIRECTION_RIGHT:
+	case Snake::DIRECTION_RIGHT:
 		newHead.X++;
 		break;
-	case SnakeItem::DIRECTION_UP:
+	case Snake::DIRECTION_UP:
 		newHead.Y--;
 		break;
-	case SnakeItem::DIRECTION_DOWN:
+	case Snake::DIRECTION_DOWN:
 		newHead.Y++;
 		break;
 	}
@@ -220,7 +215,7 @@ void SnakeItem::performMove(eDirection direction)
 	}
 }
 
-bool SnakeItem::isGameOver(const COORD& coordToCheck)
+bool Snake::isGameOver(const COORD& coordToCheck)
 {
 	if ((coordToCheck.X >= mBorder.right)
 		||
@@ -234,22 +229,27 @@ bool SnakeItem::isGameOver(const COORD& coordToCheck)
 		return false;
 }
 
-bool SnakeItem::isGameOver() const
+bool Snake::isGameOver() const
 {
 	return mIsGameOver;
 }
 
-int SnakeItem::getScore() const
+void Snake::setTronMode(bool isEnabled)
 {
-	return static_cast<int>(mSnakeBodyContent.size());
+	mIsTronModeEnabled = isEnabled;
 }
 
-void SnakeItem::assignPlayer(Player& player)
+void Snake::assignPlayer(Player& player)
 {
 	mPlayer = &player;
 }
 
-void SnakeItem::clearTail()
+const std::deque<COORD>& Snake::getBody() const
+{
+	return mSnakeBody;
+}
+
+void Snake::clearTail()
 {
 	moveCursor(mCellToClear.X, mCellToClear.Y);
 	std::cout << ' ';

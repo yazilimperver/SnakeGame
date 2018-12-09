@@ -1,6 +1,8 @@
 #include <windows.h>
 #include <stdio.h>
 #include <conio.h>
+#include <random>
+#include <ctime>
 #include <iostream>
 #include "ConsoleUtil.h"
 
@@ -223,4 +225,12 @@ int getNonBlockingChar()
 		return _getch();
 	else
 		return -1;
+}
+
+int generateRandromNumber(int low, int high)
+{
+	static std::mt19937 u_mt(std::time(nullptr));
+	std::uniform_int_distribution<unsigned int> u_distrib(low, high);
+
+	return u_distrib(u_mt);
 }
