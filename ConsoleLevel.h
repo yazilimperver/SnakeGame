@@ -3,7 +3,7 @@
  * \date    2018/10/22
  * \author  yazilimperver
  * \brief   
- * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * Copyright ï¿½ 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef CONSOLELEVEL_H__
 #define CONSOLELEVEL_H__
@@ -16,35 +16,94 @@
 
 #include <ConsoleCellData.h>
 
- // Level constants
+ /**
+  * @brief Some level content datachar  representations
+  * 
+  */
 constexpr int EMPTY = 32;
 constexpr int SAND = 0;
 constexpr int WALL = 219;
 
+/**
+ * @brief This class is responsible for managing console screen for game
+ */
 class ConsoleLevel
 {
 public:
 	ConsoleLevel();
+
+	/**
+	 * @brief Initiate game level with corresponding content
+	 */
 	void load();
+
+	/**
+	 * @brief Display currently prepared game level data
+	 * 
+	 */
 	void display();
+
+	/**
+	 * @brief Get corresponding cell data through parameters according to provided parameters 
+	 * 
+	 * @param row Cell row coordinate <y>
+	 * @param col Cell column coordinate <x>
+	 * @param background The background color of given level cell
+	 * @param foreground The foreground color of given level cell
+	 * @return int return the int value of corresponding cell
+	 */
 	int getCellData(int row, int col, Color& background, Color& foreground);
+	
+	/**
+	 * @brief Get corresponding cell data through parameters according to provided parameters 
+	 * 
+	 * @param row Cell row coordinate <y>
+	 * @param col Cell column coordinate <x>
+	 * @param cellData The cell content of given coordinate
+	 */
 	void getCellData(int row, int col, ConsoleCellData& cellData);
+
+	/**
+	 * @brief Get bundary of game level
+	 * 
+	 * @param border The returned border as parameter
+	 */
 	void getLevelBorders(RECT& border);
 
+	/**
+	 * @brief Get the Width of game level
+	 * 
+	 * @return int The level width
+	 */
 	int getWidth();
+
+	/**
+	 * @brief Get the Height of game level
+	 * 
+	 * @return int The level height
+	 */
 	int getHeight();
 private:   
-	/// The level size
+	/**
+	 * @brief The level size parameters
+	 * 
+	 */
 	int mWidth = 120;
 	int mHeight = 30;
 
-	/// The boundary level offsets
+	/**
+	 * @brief The boundary level offsets
+	 * 
+	 */
 	int mLeftOffset = 2;
 	int mTopOffset = 3;
 	int mRightOffset = 2;
 	int mBottomOffset = 2;
 
-	/// The level data
+	/**
+	 * @brief The level data hold in a matrix
+	 * 
+	 */
 	std::vector< std::vector<ConsoleCellData>> mLevelMap;
 };
 

@@ -3,11 +3,15 @@
  * \date    2018/12/01
  * \author  yazilimperver
  * \brief   
- * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * Copyright ï¿½ 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef GAMEMODE_H__
 #define GAMEMODE_H__
 
+/**
+ * @brief The game mode which will determine the snake game mechanics
+ * 
+ */
 enum class GameMode : int
 {
 	/// Snake continuously grow

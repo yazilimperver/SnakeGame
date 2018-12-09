@@ -1,44 +1,105 @@
 /**
- * \file    ConsoleInfo.h
+ * \file    InformationWindow.h
  * \date    2018/12/01
  * \author  yazilimperver
  * \brief   Responsible for displaying information about current game
- * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * Copyright ï¿½ 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
-#ifndef CONSOLEINFO_H__
-#define CONSOLEINFO_H__
+#ifndef INFORMATION_WINDOW_H__
+#define INFORMATION_WINDOW_H__
 
 #include <GameMode.h>
 #include <Player.h>
 #include <vector>
 #include <chrono>
 
-class ConsoleInfo
+/**
+ * @brief This class is responsible for displaying information under game level during gameplay.
+ *        
+ */
+class InformationWindow
 {
 public:
-	/// This function display information that does not change during game
+	/**
+	 * @brief This function display information that does not change during game
+	 * 
+	 */
 	void displayCommonConsoleInfo();
 
-	/// This function display information that change during game
+	/**
+	 * @brief This function display information that change continuously during game
+	 * 
+	 */
 	void displayConsoleInfo();
 
-	/// Game mode and other game data
+	/**
+	 * @brief Get the Game Mode
+	 * 
+	 * @return GameMode 
+	 */
 	GameMode getGameMode() const;
+  
+  /**
+   * @brief Set the Game Mode object
+   * 
+   * @param val New game mode which is set at the beginning of game
+   */
 	void setGameMode(GameMode val);
+
+  /**
+   * @brief Set the Console Width
+   * 
+   * @param val The width of console level that game will be played
+   */
 	void setConsoleWidth(int val);
+
+  /**
+   * @brief Set the Console Start Row object
+   * 
+   * @param val The start row
+   */
 	void setConsoleStartRow(int val);
+
+  /**
+   * @brief Set current game time
+   * 
+   * @param val The time representation in seconds
+   */
 	void setGameTime(int val);
 
+  /**
+   * @brief Set the Player Data
+   * 
+   * @param val Currently active player list
+   */
 	void setPlayerDataList(std::vector<Player>& val);
 private:
+  /**
+   * @brief Current game mode
+   */
 	GameMode mGameMode = GameMode::eGameMode_Tron;
+
+  /**
+   * @brief Current game console width
+   */
 	int mConsoleWidth = 100;
+
+  /**
+   * @brief Game field start row
+   */
 	int mConsoleStartRow = 0;
+
+  /**
+   * @brief Current game time in seconds
+   */
 	int mGameTime = 0;
+
+  /**
+   * @brief Reference to current player list
+   */
 	std::vector<Player>* mPlayerDataList = nullptr;
 };
-
-#endif // CONSOLEINFO_H__
+#endif // INFORMATION_WINDOW_H__
 
 /*
   Copyright (c) [2018] [Yazilimperver <yazilimpervergs@gmail.com>]

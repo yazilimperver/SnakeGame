@@ -3,7 +3,7 @@
  * \date    2018/10/21
  * \author  yazilimperver
  * \brief   
- * Copyright © 2018, <yazilimpervergs@gmail.com>
+ * Copyright ï¿½ 2018, <yazilimpervergs@gmail.com>
  */
 #ifndef CONSOLECELLITEM_H__
 #define CONSOLECELLITEM_H__
@@ -11,34 +11,81 @@
 #include <ConsoleCellData.h>
 #include <ConsoleLevel.h>
 
+/**
+ * @brief Class that will be used to print a cell data on console level which
+ * is used to cover console screen. This class remember the last value of a console
+ * cell and update it to previous value when a movement like operation is performed.
+ */
 class ConsoleCellItem
 {
-public:				  
+public:		
+	/**
+	 * @brief Construct a new Console Cell Item object
+	 * 
+	 * @param level Reference to level which is used to manage overall console screen
+	 * @param initialCellInfo Initial cell data that will be used for given cell
+	 */
 	ConsoleCellItem(ConsoleLevel& level, const ConsoleCellData& initialCellInfo);
 
-	/// Display the corresponding cell item in given position
+	/**
+	 * @brief Display the corresponding cell item in current position
+	 * 
+	 */
 	void display();
+
+	/**
+	 * @brief Display the previously stored value at corresponding cell item
+	 * 
+	 */
 	void displayPrevious();
 
-	/// Move the cell item to given coordinate and return cell to previous state
-	/// In case of first move no previous state update will be performed
+	/**
+	 * @brief Move the cell item to provided coordinate and return cell to previous state
+	 * In case of first move no previous state update will be performed
+	 * 
+	 * @param newCoord The coordinate that cell item will be moved
+	 */
 	void moveTo(const COORD& newCoord);
 
-	/// Return the corresponding cell item data
+	/**
+	 * @brief Get a reference to the Cell Item Data object
+	 * 
+	 * @return ConsoleCellData& Reference to corresponding cell item data
+	 */
 	ConsoleCellData& getCellItemData();
 
+	/**
+	 * @brief Assignment operator
+	 * 
+	 * @param newItem 
+	 * @return ConsoleCellItem& 
+	 */
 	ConsoleCellItem &operator =(const ConsoleCellItem & newItem);
 protected:
 
+	/**
+	 * @brief Print provided cell data according to cellData
+	 * 
+	 * @param cellData Provided cell data
+	 */
 	void printCellData(const ConsoleCellData& cellData);
 
-	// level representation on which movable item will travel
+	/**
+	 * @brief Console level representation on which movable item will travel
+	 * 
+	 */
 	ConsoleLevel& mLevel;
 
-	/// Previous console data which will be use in case of movement
+	/**
+	 * @brief Previous console data which will be used in case of movement
+	 * 
+	 */
 	ConsoleCellData mPreviousCellItem;
 
-	/// Console cell item data
+	/**
+	 * @brief Console cell item data that will be managed by this class
+	 * 
+	 */
 	ConsoleCellData mCellItemData;
 };
 

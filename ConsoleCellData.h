@@ -3,7 +3,7 @@
  * \date    2018/10/21
  * \author  yazilimperver
  * \brief   
- * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * Copyright ï¿½ 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef CONSOLECELLDATA_H__
 #define CONSOLECELLDATA_H__
@@ -15,9 +15,13 @@
 
 constexpr int cNotAssisgned = -1;
 
+/**
+ * @brief Represent the data that will be used to allocate a single console cell
+ * 
+ */
 struct ConsoleCellData
 {								 
-	/// The position of cell data
+	/// The position of cell data  
 	COORD mPosition{ 0, 0 };
 
 	/// The ascii cell content that will be displayed on console	

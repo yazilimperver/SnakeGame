@@ -47,9 +47,6 @@ protected:
 	/// Perform reporting activities
 	void reportStatistics(float elapsedTime);
 
-	/// Check display and update methods
-	void checkFunctionCallbacks();
-	
 	/// Is game running
 	bool mIsGameRunning = true;
 
@@ -58,6 +55,7 @@ protected:
 
 	// Reporting parameters
 	bool enableConsolePrint = false;
+
 	// 1 second
 	float reportTime = 1000.0F;
 	float accumulatedTime = 0.0F;

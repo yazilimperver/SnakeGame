@@ -4,16 +4,10 @@
     <ClCompile Include="ConsoleCellItem.cpp">
       <Filter>ConsoleCore</Filter>
     </ClCompile>
-    <ClCompile Include="ConsoleInfo.cpp">
-      <Filter>ConsoleCore</Filter>
-    </ClCompile>
     <ClCompile Include="ConsoleLevel.cpp">
       <Filter>ConsoleCore</Filter>
     </ClCompile>
     <ClCompile Include="LogoDisplayer.cpp">
-      <Filter>ConsoleCore</Filter>
-    </ClCompile>
-    <ClCompile Include="MovableItem.cpp">
       <Filter>ConsoleCore</Filter>
     </ClCompile>
     <ClCompile Include="LoopManager.cpp">
@@ -37,6 +31,9 @@
     <ClCompile Include="SnakeItem.cpp">
       <Filter>SnakeGameFiles</Filter>
     </ClCompile>
+    <ClCompile Include="InformationWindow.cpp">
+      <Filter>ConsoleCore</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h">
@@ -48,16 +45,10 @@
     <ClInclude Include="ConsoleCellItem.h">
       <Filter>ConsoleCore</Filter>
     </ClInclude>
-    <ClInclude Include="ConsoleInfo.h">
-      <Filter>ConsoleCore</Filter>
-    </ClInclude>
     <ClInclude Include="ConsoleLevel.h">
       <Filter>ConsoleCore</Filter>
     </ClInclude>
     <ClInclude Include="LogoDisplayer.h">
-      <Filter>ConsoleCore</Filter>
-    </ClInclude>
-    <ClInclude Include="MovableItem.h">
       <Filter>ConsoleCore</Filter>
     </ClInclude>
     <ClInclude Include="LoopManager.h">
@@ -89,6 +80,9 @@
     </ClInclude>
     <ClInclude Include="SnakeItem.h">
       <Filter>SnakeGameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="InformationWindow.h">
+      <Filter>ConsoleCore</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

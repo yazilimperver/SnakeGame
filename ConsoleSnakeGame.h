@@ -9,7 +9,7 @@
 #define CONSOLESNAKEGAME_H__
 
 #include <ConsoleLevel.h>
-#include <ConsoleInfo.h>
+#include <InformationWindow.h>
 #include <SnakeGameScreen.h>
 #include <SnakeItem.h>
 #include <Player.h>
@@ -52,7 +52,7 @@ protected:
 	ConsoleLevel mLevel;
 
 	/// Console info
-	ConsoleInfo mConsoleInfo;
+	InformationWindow mConsoleInfo;
 
 	/// Current game mode
 	GameMode mGameMode = GameMode::eGameMode_Tron;

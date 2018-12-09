@@ -3,17 +3,28 @@
  * \date    2018/10/23
  * \author  yazilimperver
  * \brief   
- * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * Copyright ï¿½ 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef LOGODISPLAYER_H__
 #define LOGODISPLAYER_H__
 
-#include <iostream>
-using namespace std;
+/**
+ * @brief The class that is used to print logo data
+ * 
+ */
 class LogoDisplayer
 {
 public:
+  /**
+   * @brief The snake logo
+   * 
+   */
 	static void DisplaySnakeLogo();
+
+  /**
+   * @brief The yazilimperver logo
+   * 
+   */
 	static void DisplayYazilimPerverLogoText1();
 };
 

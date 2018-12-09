@@ -160,7 +160,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleCellItem.cpp" />
-    <ClCompile Include="ConsoleInfo.cpp" />
+    <ClCompile Include="InformationWindow.cpp" />
     <ClCompile Include="ConsoleSnakeGame.cpp" />
     <ClCompile Include="ConsoleUtil.cpp" />
     <ClCompile Include="LogoDisplayer.cpp" />
@@ -168,7 +168,6 @@
     <ClCompile Include="ConsoleLevel.cpp" />
     <ClCompile Include="LoopManager.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="MovableItem.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SnakeItem.cpp" />
   </ItemGroup>
@@ -176,7 +175,7 @@
     <ClInclude Include="ConsoleCellItem.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="ConsoleCellData.h" />
-    <ClInclude Include="ConsoleInfo.h" />
+    <ClInclude Include="InformationWindow.h" />
     <ClInclude Include="ConsoleSnakeGame.h" />
     <ClInclude Include="ConsoleUtil.h" />
     <ClInclude Include="ConsoleLevel.h" />
@@ -185,7 +184,6 @@
     <ClInclude Include="LoopManager.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuContent.h" />
-    <ClInclude Include="MovableItem.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="SnakeGameScreen.h" />

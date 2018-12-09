@@ -1,11 +1,11 @@
-#include <ConsoleInfo.h>
+#include <InformationWindow.h>
 #include <ConsoleUtil.h>
 #include <iostream>
 
 using namespace std;
 using namespace std::chrono_literals;
 
-void ConsoleInfo::displayCommonConsoleInfo()
+void InformationWindow::displayCommonConsoleInfo()
 {
 	// Display joined players and corresponding scores
 	// Display items that can be eat
@@ -52,7 +52,7 @@ void ConsoleInfo::displayCommonConsoleInfo()
 	this->displayConsoleInfo();
 }
 
-void ConsoleInfo::displayConsoleInfo()
+void InformationWindow::displayConsoleInfo()
 {
 	short currentRow = static_cast<short>(mConsoleStartRow + 3);
 
@@ -80,32 +80,32 @@ void ConsoleInfo::displayConsoleInfo()
 	}
 }
 
-GameMode ConsoleInfo::getGameMode() const
+GameMode InformationWindow::getGameMode() const
 {
 	return mGameMode;
 }
 
-void ConsoleInfo::setGameMode(GameMode val)
+void InformationWindow::setGameMode(GameMode val)
 {
 	mGameMode = val;
 }
 
-void ConsoleInfo::setConsoleWidth(int val)
+void InformationWindow::setConsoleWidth(int val)
 {
 	mConsoleWidth = val;
 }
 
-void ConsoleInfo::setConsoleStartRow(int val)
+void InformationWindow::setConsoleStartRow(int val)
 {
 	mConsoleStartRow = val;
 }
 
-void ConsoleInfo::setPlayerDataList(std::vector<Player>& val)
+void InformationWindow::setPlayerDataList(std::vector<Player>& val)
 {
 	mPlayerDataList = &val;
 }
 
-void ConsoleInfo::setGameTime(int val)
+void InformationWindow::setGameTime(int val)
 {
 	mGameTime = val;
 }

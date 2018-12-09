@@ -1,5 +1,7 @@
 ﻿
 #include "LogoDisplayer.h"
+#include <iostream>
+using namespace std;
 
 constexpr char logoText[] = R"(
              ('-.      .-') _                        _   .-')     _ (`-.   ('-. _  .-')       (`-.     ('-. _  .-')   

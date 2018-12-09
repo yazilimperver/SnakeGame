@@ -3,11 +3,15 @@
  * \date    2018/10/22
  * \author  yazilimperver
  * \brief   
- * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * Copyright ï¿½ 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef COLOR_H__
 #define COLOR_H__
 
+/**
+ * @brief Enumeration that will be used for console item coloring
+ * 
+ */
 enum class Color : int
 {
 	eColor_black = 0,
