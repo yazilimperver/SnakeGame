@@ -2,7 +2,7 @@
 #include <windows.h>
 #include <mmsystem.h>
 #include <stdio.h>
-
+#include <MusicRawData.h>
 #pragma region MIDI_PLAY ENGINE
 
 #define MAX_BUFFER_SIZE (512 * 1)
@@ -296,12 +296,16 @@ void MidiPlayer::playWin32Music(const char* fileName)
 	MIDIHDR mhdr;
 	unsigned int device = 0;
 
+	midibuf = const_cast<unsigned char*>(&gMusicData[0]);
+	midilen = MUSIC_RAW_DATA_SIZE - 1;
+	/*
 	midibuf = load_file(fileName, &midilen);
 	if (midibuf == NULL)
 	{
 		printf("Could not open file: %s\n", fileName);
 		return;
 	}
+	*/
 
 	hdr = (struct _mid_header*)midibuf;
 	midibuf += sizeof(struct _mid_header);

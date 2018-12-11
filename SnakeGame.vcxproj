@@ -169,6 +169,7 @@
     <ClCompile Include="LoopManager.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MidiPlayer.cpp" />
+    <ClCompile Include="MusicRawData.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="SnakeModeItemGenerator.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuContent.h" />
     <ClInclude Include="MidiPlayer.h" />
+    <ClInclude Include="MusicRawData.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerData.h" />
     <ClInclude Include="SnakeGameScreen.h" />

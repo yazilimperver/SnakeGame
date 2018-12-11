@@ -46,7 +46,10 @@ void Snake::initialize(const ConsoleCellData& initialCellInfo)
 void Snake::display()
 {
 	// First clear the last tail
-	this->clearTail();
+	if (!mIsTronModeEnabled)
+	{
+		this->clearTail();
+	}
 
 	// set the color of snake according to color chosen by player
 	setColor(Color::eColor_black, mPlayer->GetPlayerData().mPlayerColor);

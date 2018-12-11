@@ -40,6 +40,9 @@
     <ClCompile Include="MidiPlayer.cpp">
       <Filter>ConsoleCore</Filter>
     </ClCompile>
+    <ClCompile Include="MusicRawData.cpp">
+      <Filter>SnakeGameFiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h">
@@ -98,6 +101,9 @@
     </ClInclude>
     <ClInclude Include="MidiPlayer.h">
       <Filter>ConsoleCore</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicRawData.h">
+      <Filter>SnakeGameFiles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
