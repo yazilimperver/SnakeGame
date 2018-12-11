@@ -18,6 +18,11 @@ ConsoleSnakeGame::ConsoleSnakeGame(const LoopManager& loopManager)
 {
 }
 
+ConsoleSnakeGame::~ConsoleSnakeGame()
+{
+	mMidiPlayer.finalize();
+}
+
 void ConsoleSnakeGame::initialize()
 {
 	// Level initialization
@@ -41,6 +46,8 @@ void ConsoleSnakeGame::initialize()
 
 	mFruitGenerator.setLevel(mLevel);
 	mFruitGenerator.setSnakeItem(snake);
+	
+	mMidiPlayer.initialize();
 }
 
 void ConsoleSnakeGame::update(float tickTime)
@@ -150,14 +157,7 @@ bool ConsoleSnakeGame::switchToGameScreen(SnakeGameScreen newScreen)
 			this->prepareGameScreen();
 			mGameStartClock = chrono::high_resolution_clock::now();
 			isSwitchSuccess = true;
-
-			mFruitGenerator.generateFruit();
-			mFruitGenerator.generateFruit();
-			mFruitGenerator.generateFruit();
-			mFruitGenerator.generateFruit();
-			mFruitGenerator.generateFruit();
-			mFruitGenerator.generateFruit();
-			mFruitGenerator.generateFruit();
+			mMidiPlayer.playMusic(".\\Data\\music.mid");
 		}
 		else if (SnakeGameScreen::eGAME_SCREEN_GAMEOVER == mCurrentGameScreen)
 		{
@@ -166,6 +166,7 @@ bool ConsoleSnakeGame::switchToGameScreen(SnakeGameScreen newScreen)
 			this->prepareGameScreen();
 			mGameStartClock = chrono::high_resolution_clock::now();
 			isSwitchSuccess = true;
+			mMidiPlayer.playMusic(".\\Data\\music.mid");
 		}
 		break;
 	case SnakeGameScreen::eGAME_SCREEN_GAMEOVER:
@@ -173,6 +174,7 @@ bool ConsoleSnakeGame::switchToGameScreen(SnakeGameScreen newScreen)
 		{
 			mCurrentGameScreen = SnakeGameScreen::eGAME_SCREEN_GAMEOVER;
 			isSwitchSuccess = true;
+			mMidiPlayer.stopMusic();
 		}
 		break;
 	default:

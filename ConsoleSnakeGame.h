@@ -15,6 +15,7 @@
 #include <Player.h>
 #include <LoopManager.h>
 #include <Menu.h>
+#include <MidiPlayer.h>
 #include <SnakeModeItemGenerator.h>
 
 class ConsoleSnakeGame
@@ -23,6 +24,7 @@ class ConsoleSnakeGame
 {
 public:
 	ConsoleSnakeGame(const LoopManager& loopManager);
+	~ConsoleSnakeGame();
 
 	/// One time initializations
 	void initialize();	
@@ -42,6 +44,9 @@ protected:
 
 	virtual void clearMenuBackground() override;
 	virtual void menuItemSelected(const std::string& menuId) override;
+
+	/// The midi player that will be used for music
+	MidiPlayer mMidiPlayer;
 
 	/// Registered players
 	std::vector<std::shared_ptr<Player>> mRegisteredPlayers;

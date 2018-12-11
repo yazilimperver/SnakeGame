@@ -37,6 +37,9 @@
     <ClCompile Include="Snake.cpp">
       <Filter>SnakeGameFiles</Filter>
     </ClCompile>
+    <ClCompile Include="MidiPlayer.cpp">
+      <Filter>ConsoleCore</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h">
@@ -92,6 +95,9 @@
     </ClInclude>
     <ClInclude Include="Snake.h">
       <Filter>SnakeGameFiles</Filter>
+    </ClInclude>
+    <ClInclude Include="MidiPlayer.h">
+      <Filter>ConsoleCore</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
