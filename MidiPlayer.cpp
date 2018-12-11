@@ -5,6 +5,7 @@
 #include <MusicRawData.h>
 #pragma region MIDI_PLAY ENGINE
 
+#define USE_IN_MEMORY_MIDI
 #define MAX_BUFFER_SIZE (512 * 1)
 
 // Will be used for music end check
@@ -296,16 +297,17 @@ void MidiPlayer::playWin32Music(const char* fileName)
 	MIDIHDR mhdr;
 	unsigned int device = 0;
 
+#ifdef USE_IN_MEMORY_MIDI
 	midibuf = const_cast<unsigned char*>(&gMusicData[0]);
 	midilen = MUSIC_RAW_DATA_SIZE - 1;
-	/*
+#else	
 	midibuf = load_file(fileName, &midilen);
 	if (midibuf == NULL)
 	{
 		printf("Could not open file: %s\n", fileName);
 		return;
 	}
-	*/
+#endif
 
 	hdr = (struct _mid_header*)midibuf;
 	midibuf += sizeof(struct _mid_header);
@@ -386,8 +388,9 @@ void MidiPlayer::playWin32Music(const char* fileName)
 		free(tracks);
 	}
 
+#ifndef USE_IN_MEMORY_MIDI
 	free(hdr);
-
+#endif
 	return;
 }
 
