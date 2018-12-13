@@ -4,10 +4,12 @@
 #include <conio.h>
 #include <ConsoleLevel.h>
 #include <ConsoleUtil.h>
+#include <SnakeModeItemGenerator.h>
 
 int gBodyPart = 0xDB;
 
-Snake::Snake(ConsoleLevel& level, const ConsoleCellData& initialCellInfo)
+Snake::Snake(SnakeModeItemGenerator& itemGenerator, ConsoleLevel& level, const ConsoleCellData& initialCellInfo)
+	: mSnakeModeItemGenerator{itemGenerator}
 {
 	level.getLevelBorders(mBorder);
 
@@ -211,6 +213,25 @@ void Snake::performMove(eDirection direction)
 			mSnakeBodyContent.push_back(mNewBodyPartContent);
 
 			mAddBodyPart = false;
+		}
+
+		// Check if encounter with an item
+		if (SnakeModeItem itemToCheck; true == mSnakeModeItemGenerator.isCellContainItem(newHead, itemToCheck))
+		{
+			if (true == itemToCheck.mIsFruit)
+			{
+				// Add score
+				mPlayer->GetPlayerData().mScore += itemToCheck.mImpact;
+
+				// remove item from list
+				mSnakeModeItemGenerator.removeSnakeItem(newHead);
+
+				// if snake mode then add part
+				if (false == mIsTronModeEnabled)
+				{
+					this->addTail();
+				}
+			}
 		}
 
 		// Display new snake

@@ -13,7 +13,7 @@ using namespace std::chrono_literals;
 using namespace std;
 
 ConsoleSnakeGame::ConsoleSnakeGame(const LoopManager& loopManager) 
-	: snake{ mLevel, ConsoleCellData{ {10, 10}, '@', Color::eColor_blue, Color::eColor_black} }
+	: snake{ mFruitGenerator, mLevel, ConsoleCellData{ {10, 10}, '@', Color::eColor_blue, Color::eColor_black} }
 , mLoopManager(loopManager)
 {
 }
@@ -67,14 +67,8 @@ void ConsoleSnakeGame::update(float tickTime)
 			// Update player scores
 			this->updateScores();
 
-			static float gameTime = 0;
-			gameTime += tickTime;
-
-			if (gameTime > 1000)
-			{
-				mFruitGenerator.generateFruit();
-				gameTime = 0;
-			}
+			// Update fruit generator
+			mFruitGenerator.update(tickTime);
 		}
 		else
 		{
@@ -153,6 +147,8 @@ bool ConsoleSnakeGame::switchToGameScreen(SnakeGameScreen newScreen)
 			||
 			SnakeGameScreen::eGAME_SCREEN_SPLASH == mCurrentGameScreen)
 		{
+			mFruitGenerator.reset();
+
 			mCurrentGameScreen = SnakeGameScreen::eGAME_SCREEN_GAME;
 			this->prepareGameScreen();
 			mGameStartClock = chrono::high_resolution_clock::now();
@@ -161,6 +157,8 @@ bool ConsoleSnakeGame::switchToGameScreen(SnakeGameScreen newScreen)
 		}
 		else if (SnakeGameScreen::eGAME_SCREEN_GAMEOVER == mCurrentGameScreen)
 		{
+			mFruitGenerator.reset();
+
 			mCurrentGameScreen = SnakeGameScreen::eGAME_SCREEN_GAME;
 			clearConsole();
 			this->prepareGameScreen();

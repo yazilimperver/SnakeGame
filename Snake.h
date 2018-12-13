@@ -12,11 +12,13 @@
 #include <ConsoleCellItem.h>
 #include <deque>
 
+class SnakeModeItemGenerator;
+
 /// This class is responsible from management of snake mechanics
 class Snake
 {
 public:
-	Snake(ConsoleLevel& level, const ConsoleCellData& snakeHead);
+	Snake(SnakeModeItemGenerator& itemGenerator, ConsoleLevel& level, const ConsoleCellData& snakeHead);
 
 	/// Re-initialize this snake with given data
 	void initialize(const ConsoleCellData& snakeHead);
@@ -65,6 +67,9 @@ protected:
 
 	/// Initialization completed
 	bool mIsInitialized = true;
+
+	/// The item generator that we will use for checking fruit
+	SnakeModeItemGenerator& mSnakeModeItemGenerator;
 
 	/// The player assigned to this snake item
 	Player* mPlayer = nullptr;

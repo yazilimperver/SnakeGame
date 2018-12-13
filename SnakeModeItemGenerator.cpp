@@ -91,6 +91,25 @@ void SnakeModeItemGenerator::generateFruit()
 	}
 }
 
+void SnakeModeItemGenerator::update(float tickTime)
+{
+	mAccumulatedTime += tickTime;
+
+	if (mAccumulatedTime > mFruitGenerationPeriod
+		&&
+		mFruits.size() < mMaxAllowedFruitCount)
+	{
+		this->generateFruit();
+		mAccumulatedTime = 0;
+	}
+}
+
+void SnakeModeItemGenerator::reset()
+{
+	mFruits.clear();
+	mAccumulatedTime = 0.0F;
+}
+
 bool SnakeModeItemGenerator::isCollideWithSnake(const COORD& coordToCheck)
 {
 	bool result = false;

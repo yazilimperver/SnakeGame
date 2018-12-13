@@ -29,19 +29,34 @@ public:
 
 	/// Generate random fruit
 	void generateFruit();
+
+	/// The tick function of fruit generator
+	void update(float tickTime);
+
+	/// Will be called to free fruits and reset timer
+	void reset();
 private:
 
 	bool isCollideWithSnake(const COORD& coordToCheck);
 	bool isItemLocatedAtPosition(const COORD& coordToCheck);
 
 	/// Reference to game level
-	ConsoleLevel* mLevel;
+	ConsoleLevel* mLevel{ nullptr };
 
 	/// The active snake item
-	const Snake* mSnakeItem;
+	const Snake* mSnakeItem{ nullptr };
+
+	/// Time since last fruit is generated in milliseconds
+	float mAccumulatedTime{ 0.0F };
+
+	/// Max fruit count
+	const size_t mMaxAllowedFruitCount{ 5 };
 
 	/// Currently active fruits
 	std::vector<SnakeModeItem> mFruits;
+
+	/// Fruit generation period in milliseconds
+	const float mFruitGenerationPeriod{ 5000 };
 };
 
 #endif // SNAKEMODEITEMGENERATOR_H__

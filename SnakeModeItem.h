@@ -20,7 +20,7 @@ struct SnakeModeItem
 	COORD mPosition{ 0, 0 };
 
 	/// The impact
-	int mImpact {1};
+	int mImpact {10};
 
 	/// The item representation
 	char mData{ static_cast<char>(254) };
