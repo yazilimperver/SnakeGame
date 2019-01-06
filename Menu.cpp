@@ -4,7 +4,7 @@
 #include <ConsoleUtil.h>
 #include <iostream>
 #include <conio.h>
-#include <locale>         // std::locale, std::isalnum
+#include <locale> // std::locale, std::isalnum
 
 Menu::Menu()
 {

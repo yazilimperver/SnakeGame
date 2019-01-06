@@ -104,7 +104,7 @@ void displayCenteredText(const char *message, int consoleWidth, int ypos)
 		moveCursor(static_cast<int>(xpos), static_cast<int>(ypos));
 		printf(message);
 	}
-}  
+}
 
 void cursorHide()
 {
@@ -207,9 +207,9 @@ void setWindowSize(int Width, int Height)
 	Rect.Bottom = Height - 1;
 	Rect.Right = Width - 1;
 
-	HANDLE Handle = GetStdHandle(STD_OUTPUT_HANDLE);      // Get Handle 
-	SetConsoleScreenBufferSize(Handle, coord);            // Set Buffer Size 
-	SetConsoleWindowInfo(Handle, TRUE, &Rect);            // Set Window Size 
+	HANDLE Handle = GetStdHandle(STD_OUTPUT_HANDLE);// Get Handle 
+	SetConsoleScreenBufferSize(Handle, coord);// Set Buffer Size 
+	SetConsoleWindowInfo(Handle, TRUE, &Rect);// Set Window Size 
 }
 
 void setConsoleInformation(short left, short top, short width, short height)

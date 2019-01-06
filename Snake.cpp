@@ -1,4 +1,4 @@
-#include <Snake.h>	  
+#include <Snake.h>	
 #include <windows.h>
 #include <iostream>
 #include <conio.h>

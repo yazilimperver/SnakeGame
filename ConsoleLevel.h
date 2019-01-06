@@ -1,14 +1,14 @@
 /**
- * @file    ConsoleLevel.h
- * @date    2018/10/22
- * @author  yazilimperver
- * @brief   
- * Copyright � 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * @fileConsoleLevel.h
+ * @date2018/10/22
+ * @authoryazilimperver
+ * @brief 
+ * Copyright (C) 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef CONSOLELEVEL_H__
 #define CONSOLELEVEL_H__
 
-#include <vector>		   
+#include <vector>		 
 #include <Color.h>
 
 #define WIN32_LEAN_AND_MEAN
@@ -17,9 +17,9 @@
 #include <ConsoleCellData.h>
 
  /**
-  * @brief Some level content data char  representations
-  * 
-  */
+* @brief Some level content data charrepresentations
+* 
+*/
 constexpr int EMPTY = 32;
 constexpr int SAND = 0;
 constexpr int WALL = 219;
@@ -84,7 +84,7 @@ public:
 	 * @return int The level height
 	 */
 	int getHeight();
-private:   
+private: 
 	/**
 	 * @brief The level size parameters
 	 * 
@@ -111,24 +111,24 @@ private:
 #endif // CONSOLELEVEL_H__
 
 /*
-  Copyright (c) [2018] [Yazilimperver <yazilimpervergs@gmail.com>]
-  
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to deal
-  in the Software without restriction, including without limitation the rights
-  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
-  
-  The above copyright notice and this permission notice shall be included in all
-  copies or substantial portions of the Software.
-  
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
+Copyright (c) [2018] [Yazilimperver <yazilimpervergs@gmail.com>]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 */
 

@@ -57,7 +57,7 @@ void InformationWindow::displayConsoleInfo()
 	short currentRow = static_cast<short>(mConsoleStartRow + 3);
 
 	// Display game duration	
-	moveCursor(COORD{ 1,  currentRow });
+	moveCursor(COORD{ 1,currentRow });
 	setColor(Color::eColor_black, Color::eColor_darkgreen);
 	cout << "Game Duration: ";
 
@@ -67,7 +67,7 @@ void InformationWindow::displayConsoleInfo()
 	if (nullptr != mPlayerDataList)
 	{
 		currentRow++;
-		moveCursor(COORD{ 1,  currentRow });
+		moveCursor(COORD{ 1,currentRow });
 
 		for (auto& player:*mPlayerDataList)
 		{

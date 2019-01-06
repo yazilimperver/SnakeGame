@@ -1,12 +1,12 @@
 #include <ConsoleSnakeGame.h>	 
 #include <ConsoleUtil.h>		
-#include <LoopManager.h>  
-#include <iostream>				  
+#include <LoopManager.h>
+#include <iostream>				
 #include <thread>
 #include <cstdlib>
 
 #include <LogoDisplayer.h>
-#include <conio.h>		   
+#include <conio.h>		 
 #include <chrono>
 
 using namespace std::chrono_literals;
@@ -95,7 +95,7 @@ void ConsoleSnakeGame::display(float tickTime)
 		// Display fps at top right	
 		setColor(Color::eColor_black, Color::eColor_green);
 		moveCursor(90, 0);
-		cout << "FPS : " << mLoopManager.getLastFPS() << "    ";
+		cout << "FPS : " << mLoopManager.getLastFPS() << "";
 
 		// Display console info
 		mConsoleInfo.displayConsoleInfo();
@@ -219,7 +219,7 @@ void ConsoleSnakeGame::displayGameOver(float tickTime)
 	}
 	else
 	{
-		displayCenteredText("          ", 126, 15);
+		displayCenteredText("", 126, 15);
 	}
 
 	if (getNonBlockingChar() == ' ')
@@ -363,7 +363,7 @@ void ConsoleSnakeGame::populateGameMenu()
 	
 	auto& nameMenu = optionsMenu.mItems[0];
 	nameMenu.mIsInputField = true;
-	nameMenu.mItems.push_back(MenuContent{ "               ", 0, false, &optionsMenu });
+	nameMenu.mItems.push_back(MenuContent{ " ", 0, false, &optionsMenu });
 
 	auto& nameInputMenu = nameMenu.mItems[0];
 	optionsMenu.mItems.push_back(MenuContent{ "UPDATE YOUR COLOR", 0, false, &optionsMenu });
@@ -431,7 +431,7 @@ void ConsoleSnakeGame::displayGameLogo()
 		}
 		else
 		{
-			displayCenteredText("                                        ", 126, 37);
+			displayCenteredText("", 126, 37);
 		}
 	} while (getNonBlockingChar() != ' ');
 	

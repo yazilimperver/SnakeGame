@@ -1,10 +1,10 @@
 /**
- * @file    LoopManager.h
- * @date    2018/10/22
- * @author  yazilimperver
- * @brief   The loopmanagement class. The different loop management approachs are illustrated through this game. Currently, fifth approach is employed for this game.
+ * @fileLoopManager.h
+ * @date2018/10/22
+ * @authoryazilimperver
+ * @brief The loopmanagement class. The different loop management approachs are illustrated through this game. Currently, fifth approach is employed for this game.
  * 			For more details. Check out the corresponding blog post: http://www.yazilimperver.com/index.php/2018/10/24/oyun-donguleri-ornek-kodlar/
- * Copyright � 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * Copyright (C) 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef LOOPMANAGER_H__
 #define LOOPMANAGER_H__
@@ -33,7 +33,7 @@ public:
 
 /**
  * @brief This class is responsible for management of application loop through display and game mechanic update methods. The approaches
- *        described in http://www.yazilimperver.com/index.php/2018/10/24/oyun-donguleri-ornek-kodlar/ are implemented.
+ *described in http://www.yazilimperver.com/index.php/2018/10/24/oyun-donguleri-ornek-kodlar/ are implemented.
  */
 class LoopManager
 {
@@ -159,24 +159,24 @@ protected:
 #endif // LOOPMANAGER_H__
 
 /*
-  Copyright (c) [2018] [Yazilimperver <yazilimpervergs@gmail.com>]
-  
-  Permission is hereby granted, free of charge, to any person obtaining a copy
-  of this software and associated documentation files (the "Software"), to deal
-  in the Software without restriction, including without limitation the rights
-  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-  copies of the Software, and to permit persons to whom the Software is
-  furnished to do so, subject to the following conditions:
-  
-  The above copyright notice and this permission notice shall be included in all
-  copies or substantial portions of the Software.
-  
-  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-  SOFTWARE.
+Copyright (c) [2018] [Yazilimperver <yazilimpervergs@gmail.com>]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 */
 

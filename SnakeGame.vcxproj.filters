@@ -16,9 +16,6 @@
     <ClCompile Include="ConsoleSnakeGame.cpp">
       <Filter>SnakeGameFiles</Filter>
     </ClCompile>
-    <ClCompile Include="ConsoleUtil.cpp">
-      <Filter>SnakeGameFiles</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>SnakeGameFiles</Filter>
     </ClCompile>
@@ -43,6 +40,9 @@
     <ClCompile Include="MusicRawData.cpp">
       <Filter>SnakeGameFiles</Filter>
     </ClCompile>
+    <ClCompile Include="ConsoleUtil.cpp">
+      <Filter>ConsoleCore</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Color.h">
@@ -64,9 +64,6 @@
       <Filter>LoopManagement</Filter>
     </ClInclude>
     <ClInclude Include="ConsoleSnakeGame.h">
-      <Filter>SnakeGameFiles</Filter>
-    </ClInclude>
-    <ClInclude Include="ConsoleUtil.h">
       <Filter>SnakeGameFiles</Filter>
     </ClInclude>
     <ClInclude Include="GameMode.h">
@@ -105,6 +102,9 @@
     <ClInclude Include="MusicRawData.h">
       <Filter>SnakeGameFiles</Filter>
     </ClInclude>
+    <ClInclude Include="ConsoleUtil.h">
+      <Filter>ConsoleCore</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ConsoleCore">
@@ -116,5 +116,13 @@
     <Filter Include="SnakeGameFiles">
       <UniqueIdentifier>{4ef0fdf4-dc83-48a2-9966-647da5b959d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CMake">
+      <UniqueIdentifier>{e03cb4e3-fab7-4d77-a185-ba4d8e9a05e4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt">
+      <Filter>CMake</Filter>
+    </Text>
   </ItemGroup>
 </Project>

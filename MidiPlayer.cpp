@@ -17,7 +17,7 @@ struct _mid_header {
 	unsigned int	id;		// identifier "MThd"
 	unsigned int	size;	// always 6 in big-endian format
 	unsigned short	format;	// big-endian format
-	unsigned short  tracks;	// number of tracks, big-endian
+	unsigned shorttracks;	// number of tracks, big-endian
 	unsigned short	ticks;	// number of ticks per quarter note, big-endian
 };
 
