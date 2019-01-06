@@ -1,9 +1,9 @@
 /**
- * \file    SnakeModeItemGenerator.h
- * \date    2018/12/09
- * \author  yazilimperver
- * \brief   
- * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * @file    SnakeModeItemGenerator.h
+ * @date    2018/12/09
+ * @author  yazilimperver
+ * @brief   
+ * Copyright ï¿½ 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef SNAKEMODEITEMGENERATOR_H__
 #define SNAKEMODEITEMGENERATOR_H__
@@ -14,48 +14,115 @@
 class ConsoleLevel;
 class Snake;
 
-/// This class is responsible for generating fruits and poisons for snake mode game as well as generation of fruits when a snake died.
+/**
+ * @brief This class is responsible for generating fruits and poisons for snake mode game as well as generation of fruits when a snake died.
+ * 
+ */
 class SnakeModeItemGenerator
 {
 public:
+	/**
+	 * @brief Set the game level object reference
+	 * 
+	 * @param val 
+	 */
 	void setLevel(ConsoleLevel& val);
+
+	/**
+	 * @brief Pass the snake object
+	 * 
+	 * @param val 
+	 */
 	void setSnakeItem(const Snake& val);
 
-	/// Check cell content and return false if no item exist and true if item exist with corresponding content
+	/**
+	 * @brief Check the cell content and return false if no item exist and true if item exist with corresponding content
+	 * 
+	 * @param coordToCheck 
+	 * @param cellContet 
+	 * @return true 
+	 * @return false 
+	 */
 	bool isCellContainItem(const COORD& coordToCheck, SnakeModeItem& cellContet);
 
-	/// Remove corresponding snake item
+	/**
+	 * @brief Remove corresponding snake item
+	 * 
+	 * @param coordToCheck 
+	 */
 	void removeSnakeItem(const COORD& coordToCheck);
 
-	/// Generate random fruit
+	/**
+	 * @brief Generate random fruit
+	 * 
+	 */
 	void generateFruit();
 
-	/// The tick function of fruit generator
+	/**
+	 * @brief The tick function of fruit generator
+	 * 
+	 * @param tickTime 
+	 */
 	void update(float tickTime);
 
-	/// Will be called to free fruits and reset timer
+	/**
+	 * @brief Will be called to free fruits and reset timer
+	 * 
+	 */
 	void reset();
 private:
 
+	/**
+	 * @brief Check if given coordinate collide with snake which will be used for item generation
+	 * 
+	 * @param coordToCheck 
+	 * @return true 
+	 * @return false 
+	 */
 	bool isCollideWithSnake(const COORD& coordToCheck);
+	/**
+	 * @brief Check if given coordinate collide with previous items
+	 * 
+	 * @param coordToCheck 
+	 * @return true 
+	 * @return false 
+	 */
 	bool isItemLocatedAtPosition(const COORD& coordToCheck);
 
-	/// Reference to game level
+	/**
+	 * @brief Reference to game level
+	 * 
+	 */
 	ConsoleLevel* mLevel{ nullptr };
 
-	/// The active snake item
+	/**
+	 * @brief The active snake item
+	 * 
+	 */
 	const Snake* mSnakeItem{ nullptr };
 
-	/// Time since last fruit is generated in milliseconds
+	/**
+	 * @brief Time since last fruit is generated in milliseconds
+	 * 
+	 */
 	float mAccumulatedTime{ 0.0F };
 
-	/// Max fruit count
+	/**
+	 * @brief Max fruit count
+	 * 
+	 */
 	const size_t mMaxAllowedFruitCount{ 5 };
 
-	/// Currently active fruits
+	/**
+	 * @brief Currently active fruits
+	 * 
+	 */
 	std::vector<SnakeModeItem> mFruits;
 
-	/// Fruit generation period in milliseconds
+	/**
+	 * @brief Fruit generation period in milliseconds
+	 * 
+	 */
 	const float mFruitGenerationPeriod{ 5000 };
 };
 

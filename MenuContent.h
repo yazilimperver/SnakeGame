@@ -1,9 +1,9 @@
 /**
- * \file    MenuContent.h
- * \date    2018/12/02
- * \author  yazilimperver
- * \brief   
- * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * @file    MenuContent.h
+ * @date    2018/12/02
+ * @author  yazilimperver
+ * @brief   
+ * Copyright ï¿½ 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef MENUCONTENT_H__
 #define MENUCONTENT_H__
@@ -11,24 +11,48 @@
 #include <string>
 #include <vector>
 
-/// This struct is responsible for holding all menu and sub menu
+/**
+ * @brief This simple struct is responsible for holding all menu and sub menu content
+ * 
+ */
 struct MenuContent
 {
-	/// Title of menu
-	std::string mTitle = "MENU";
+	/**
+	 * @brief The title of current menu
+	 * 
+	 */
+	std::string mTitle {"MENU"};
 
-	/// Is input field
-	bool mIsInputField = false;
+	/**
+	 * @brief Is this menu item has input field
+	 * 
+	 */
+	bool mIsInputField {false};
 
-	/// The chosen item in this menu
-	int mSelectedItem = 0;
+	/**
+	 * @brief The index of currently selected child menu
+	 * 
+	 */
+	int mSelectedItem {0};
 
-	/// Parent menu (null in case of top menu)
-	MenuContent* mParent = nullptr;
+	/**
+	 * @brief Reference to parent menu (null in case of top menu)
+	 * 
+	 */
+	MenuContent* mParent {nullptr};
 
-	/// Menu items
+	/**
+	 * @brief Children menu items
+	 * 
+	 */
 	std::vector<MenuContent> mItems;
 
+	/**
+	 * @brief The assignment operator for menu content stuff
+	 * 
+	 * @param rhs 
+	 * @return MenuContent& 
+	 */
 	MenuContent& operator=(const MenuContent& rhs)
 	{
 		mTitle = rhs.mTitle;

@@ -1,8 +1,8 @@
 /**
- * \file    ConsoleUtil.h
- * \date    2018/10/22
- * \author  yazilimperver
- * \brief   
+ * @file    ConsoleUtil.h
+ * @date    2018/10/22
+ * @author  yazilimperver
+ * @brief   
  * Copyright � 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef CONSOLEUTIL_H__
@@ -124,8 +124,13 @@ extern void setConsoleInformation(short left, short top, short width, short heig
  */
 extern int  getNonBlockingChar();
 
-
-// A Mersenne Twister algorithm which gives you good tradeoff between randoness and speed.
+/**
+ * @brief A Mersenne Twister algorithm which gives you good tradeoff between randoness and speed.
+ * 
+ * @param low The lower bound of numbers that will be generated
+ * @param high The uppoer bound of numbers that will be generated
+ * @return int The generated number
+ */
 extern int generateRandromNumber(int low, int high);
 #endif // CONSOLEUTIL_H__
 

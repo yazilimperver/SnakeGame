@@ -1,9 +1,9 @@
 /**
- * \file    Menu.h
- * \date    2018/12/02
- * \author  yazilimperver
- * \brief   
- * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * @file    Menu.h
+ * @date    2018/12/02
+ * @author  yazilimperver
+ * @brief   
+ * Copyright ï¿½ 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef MENU_H__
 #define MENU_H__
@@ -11,7 +11,7 @@
 #include <MenuContent.h>
 
 // TODO: Implement this using callbacks
-class IMenuLister
+class IMenuListener
 {
 public:
 	virtual void clearMenuBackground() = 0;
@@ -25,7 +25,7 @@ public:
 	Menu();
 	MenuContent& getManagedMenu();
 	void setStartPosition(int startRow, int centerCol);
-	void setListener(IMenuLister* val);
+	void setListener(IMenuListener* val);
 
 	/// Calculate the menu metrics that will be used for display
 	void calculateMenuMetrics();
@@ -60,7 +60,7 @@ private:
 	MenuContent* mActiveMenu = nullptr;
 
 	/// Menu listener
-	IMenuLister* mListener = nullptr;
+	IMenuListener* mListener = nullptr;
 };
 
 #endif // MENU_H__

@@ -1,9 +1,9 @@
 /**
- * \file    SnakeModeItem.h
- * \date    2018/12/09
- * \author  yazilimperver
- * \brief   
- * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * @file    SnakeModeItem.h
+ * @date    2018/12/09
+ * @author  yazilimperver
+ * @brief   
+ * Copyright ï¿½ 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef SNAKEMODEITEM_H__
 #define SNAKEMODEITEM_H__
@@ -11,22 +11,46 @@
 #include <windows.h>
 #include <Color.h>
 
+/**
+ * @brief This struct is used to represent the items that will be generated during gameplay in only snake mode
+ * 
+ */
 struct SnakeModeItem
 {
-	/// Is this item fruit or poison
+	/**
+	 * @brief Is this item fruit or poison
+	 * 
+	 */
 	bool mIsFruit { true };
 
-	/// The position of this item
+	/**
+	 * @brief The position of this item
+	 * 
+	 */
 	COORD mPosition{ 0, 0 };
 
-	/// The impact
+	/**
+	 * @brief The impact/score
+	 * 
+	 */
 	int mImpact {10};
 
-	/// The item representation
+	/**
+	 * @brief The item representation
+	 * 
+	 */
 	char mData{ static_cast<char>(254) };
 
-	/// The color data
+	/**
+	 * @brief The background color of item
+	 * 
+	 */
 	Color mBackColor{ Color::eColor_black };
+  
+	/**
+	 * @brief The foreground color of item
+	 * 
+	 */
 	Color mFrontColor{ Color::eColor_green };
 };
 

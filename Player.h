@@ -1,15 +1,19 @@
 /**
- * \file    Player.h
- * \date    2018/10/29
- * \author  yazilimperver
- * \brief   
- * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * @file    Player.h
+ * @date    2018/10/29
+ * @author  yazilimperver
+ * @brief   
+ * Copyright ï¿½ 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef PLAYER_H__
 #define PLAYER_H__
 
 #include <PlayerData.h>
 
+/**
+ * @brief The player class which hold associated data. This will be improved for multiplayer game 
+ * 
+ */
 class Player
 {
 public:

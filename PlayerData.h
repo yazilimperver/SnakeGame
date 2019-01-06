@@ -1,9 +1,9 @@
 /**
- * \file    PlayerData.h
- * \date    2018/10/29
- * \author  yazilimperver
- * \brief   
- * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * @file    PlayerData.h
+ * @date    2018/10/29
+ * @author  yazilimperver
+ * @brief   
+ * Copyright ï¿½ 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef PLAYERDATA_H__
 #define PLAYERDATA_H__
@@ -11,24 +11,41 @@
 #include <string>
 #include <Color.h>
 
+/**
+ * @brief The data that will be kept for each player
+ * 
+ */
 struct PlayerData
 {
-	/// Name of player
-	std::string mName = "Player_01";
+	/**
+	 * @brief Name of player
+	 * 
+	 */
+	std::string mName {"Player_01"};
 
-	/// Player unique id
-	int32_t mPlayerId = 1;
+	/**
+	 * @brief Player unique id
+	 * 
+	 */
+	int32_t mPlayerId {1};
 
-	/// Color
-	Color mPlayerColor = Color::eColor_red;
+	/**
+	 * @brief The color of snake
+	 * 
+	 */
+	Color mPlayerColor {Color::eColor_red};
 
-	/// Score
-	int32_t mScore = 0;
+	/**
+	 * @brief The player score
+	 * 
+	 */
+	int32_t mScore {0};
 
-	/// Alive status
-	bool mIsAlive = true;
-
-	/// TODO: NETWORK DATA (IP, CONNECTION STATUS, LAST RECEIVE DATA)
+	/**
+	 * @brief Alive status
+	 * 
+	 */
+	bool mIsAlive {true};
 };
 
 #endif // PLAYERDATA_H__

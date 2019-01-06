@@ -1,8 +1,8 @@
 /**
- * \file    ConsoleCellData.h
- * \date    2018/10/21
- * \author  yazilimperver
- * \brief   
+ * @file    ConsoleCellData.h
+ * @date    2018/10/21
+ * @author  yazilimperver
+ * @brief   
  * Copyright � 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef CONSOLECELLDATA_H__

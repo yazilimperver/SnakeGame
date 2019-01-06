@@ -1,9 +1,10 @@
 /**
- * \file    ConsoleSnakeGame.h
- * \date    2018/10/22
- * \author  yazilimperver
- * \brief   
- * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * @file    ConsoleSnakeGame.h
+ * @date    2018/10/22
+ * @author  yazilimperver
+ * @brief   Main game class which is responsible for management of game. The game is composed of screens which are used to group each game activity by SnakeGameScreen enumaration.
+ * 		    This can be considered as a simple state machine that will be used to manage game scenes.
+ * Copyright ï¿½ 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef CONSOLESNAKEGAME_H__
 #define CONSOLESNAKEGAME_H__
@@ -18,23 +19,54 @@
 #include <MidiPlayer.h>
 #include <SnakeModeItemGenerator.h>
 
+/**
+ * @brief This class is the main class for overall game it implements IApplication for loopmanagement and IMenuListener for menu events.
+ * 
+ */
 class ConsoleSnakeGame
 	: public IApplication
-	, public IMenuLister
+	, public IMenuListener
 {
 public:
+	/**
+	 * @brief Construct a new Console Snake Game object which accepts loopmanager
+	 * 
+	 * @param loopManager 
+	 */
 	ConsoleSnakeGame(const LoopManager& loopManager);
 	~ConsoleSnakeGame();
 
-	/// One time initializations
+	/**
+	 * @brief Perform one time game initialization
+	 * 
+	 */
 	void initialize();	
+
+	/**
+	 * @brief The display entry point for our game which will perform all drawing
+	 * 
+	 * @param tickTime: The time provided by loop manager in miliseconds
+	 */
 	void display(float tickTime);
+
+	/**
+	 * @brief The update entry point for our game which will perform all physics and game mechanics
+	 * 
+	 * @param tickTime: The time provided by loop manager in miliseconds
+	 */
 	void update(float tickTime);
 
+	/**
+	 * @brief Switch to provided game screen. Chekout file brief or blog post for more information
+	 * 
+	 * @param newScreen: The new game screen
+	 * @return true : Switch performed successfully
+	 * @return false : Switch failed
+	 */
 	bool switchToGameScreen(SnakeGameScreen newScreen);
 
-	void displayGameOver(float tickTime);
 protected:
+	void displayGameOver(float tickTime);
 	void populateGameMenu();
 	void displayLogo();
 	void displayGameLogo();
@@ -45,49 +77,100 @@ protected:
 	virtual void clearMenuBackground() override;
 	virtual void menuItemSelected(const std::string& menuId) override;
 
-	/// The midi player that will be used for music
+	/**
+	 * @brief The midi player that will be used for music
+	 * 
+	 */
 	MidiPlayer mMidiPlayer;
 
-	/// Registered players
+	/**
+	 * @brief Registered players
+	 * 
+	 */
 	std::vector<std::shared_ptr<Player>> mRegisteredPlayers;
 
-	/// Current game screen
+	/**
+	 * @brief Current game screen
+	 * 
+	 */
 	SnakeGameScreen mCurrentGameScreen = SnakeGameScreen::eGAME_SCREEN_INITIAL;
 
-	/// Snake game board
+	/**
+	 * @brief Snake game board
+	 * 
+	 */
 	ConsoleLevel mLevel;
 
-	/// Console info
+	/**
+	 * @brief Console info
+	 * 
+	 */
 	InformationWindow mConsoleInfo;
 
-	/// Current game mode
+	/**
+	 * @brief Current game mode
+	 * 
+	 */
 	GameMode mGameMode = GameMode::eGameMode_Tron;
 
-	/// General parameters
+	/**
+	 * @brief The console width
+	 * 
+	 */
 	int mWidth;
+	
+	/**
+	 * @brief The console height
+	 * 
+	 */
 	int mHeight;
 
-	/// Info console parameters
+	/**
+	 * @brief Info console start row (y)
+	 * 
+	 */
 	int mConsoleStartRow;
 
-	/// Snake head
-	/// MovableItem snake;
+	/**
+	 * @brief The snake object
+	 * 
+	 */
 	Snake snake;
 
-	/// The main menu of game
+	/**
+	 * @brief The main menu of game object
+	 * 
+	 */
 	Menu mMainMenu;
 
-	/// Active players
+	/**
+	 * @brief The list of active players
+	 * 
+	 */
 	std::vector<Player> mPlayers;
 
-	/// Loop manager that we associate our application
+	/**
+	 * @brief Loop manager that we associate our application
+	 * 
+	 */
 	const LoopManager& mLoopManager;
 
-	/// Fruit/poison generator
+	/**
+	 * @brief Fruit/poison generator for snake mode games
+	 * 
+	 */
 	SnakeModeItemGenerator mFruitGenerator;
 
-	/// Game start indicator
+	/**
+	 * @brief Current game time in miliseconds
+	 * 
+	 */
 	int mCurrentGameTime = 0;
+
+	/**
+	 * @brief The timer that will be used to mark start of game
+	 * 
+	 */
 	std::chrono::time_point<std::chrono::high_resolution_clock> mGameStartClock;
 };
 

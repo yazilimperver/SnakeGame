@@ -1,8 +1,8 @@
 /**
- * \file    Color.h
- * \date    2018/10/22
- * \author  yazilimperver
- * \brief   
+ * @file    Color.h
+ * @date    2018/10/22
+ * @author  yazilimperver
+ * @brief   
  * Copyright � 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef COLOR_H__

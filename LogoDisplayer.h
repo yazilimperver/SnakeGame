@@ -1,8 +1,8 @@
 /**
- * \file    LogoDisplayer.h
- * \date    2018/10/23
- * \author  yazilimperver
- * \brief   
+ * @file    LogoDisplayer.h
+ * @date    2018/10/23
+ * @author  yazilimperver
+ * @brief   
  * Copyright � 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef LOGODISPLAYER_H__

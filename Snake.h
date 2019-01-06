@@ -1,9 +1,9 @@
 /**
- * \file    Snake.h
- * \date    2018/10/23
- * \author  yazilimperver
- * \brief   
- * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * @file    Snake.h
+ * @date    2018/10/23
+ * @author  yazilimperver
+ * @brief   
+ * Copyright ï¿½ 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef SNAKE_H__
 #define SNAKE_H__
@@ -14,34 +14,75 @@
 
 class SnakeModeItemGenerator;
 
-/// This class is responsible from management of snake mechanics
+/**
+ * @brief This class is responsible from management of snake mechanics. Each player will have instance of this class in multiplayer case.
+ * 
+ */
 class Snake
 {
 public:
+	/**
+	 * @brief Construct a new Snake object
+	 * 
+	 * @param itemGenerator Item generator which will be used to check if snake eat one of item generated
+	 * @param level The level that snake will move on
+	 * @param snakeHead The initial head position and associated data for snake
+	 */
 	Snake(SnakeModeItemGenerator& itemGenerator, ConsoleLevel& level, const ConsoleCellData& snakeHead);
 
-	/// Re-initialize this snake with given data
+	/**
+	 * @brief Re-initialize this snake with given data (i.e. restarts)
+	 * 
+	 * @param snakeHead The snake head position
+	 */
 	void initialize(const ConsoleCellData& snakeHead);
 	
-	/// Just display item
+	/**
+	 * @brief Display method
+	 * 
+	 */
 	void display();
 
-	/// Update this snake
+	/**
+	 * @brief Perform snake mechanics
+	 * 
+	 * @param timePassedInMsec 
+	 */
 	void update(float timePassedInMsec);
 
-	/// For upper management :)
+	/**
+	 * @brief Gameover check
+	 * 
+	 * @return true 
+	 * @return false 
+	 */
 	bool isGameOver() const;
 
-	/// Set tron mode enabled which make snake getting longer per timeout
+	/**
+	 * @brief Set tron mode enabled make snake getting longer per timeout. Otherwise it only grow with fruit
+	 * 
+	 * @param isEnabled 
+	 */
 	void setTronMode(bool isEnabled);
 
-	/// Assign player to this snake
+	/**
+	 * @brief Assign player to this snake
+	 * 
+	 * @param player 
+	 */
 	void assignPlayer(Player& player);
 
-	/// Return snake body content
+	/**
+	 * @brief Return snake body content which will be used by item generator for the time being
+	 * 
+	 * @return const std::deque<COORD>& 
+	 */
 	const std::deque<COORD>& getBody() const;
 
-	/// Direction information
+	/**
+	 * @brief Snake direction information
+	 * 
+	 */
 	enum eDirection
 	{
 		DIRECTION_LEFT,
@@ -51,72 +92,141 @@ public:
 	};
 protected:
 
+	/**
+	 * @brief Add a tail to snake
+	 * 
+	 */
 	void addTail();
 
-	/// Check input
+	/**
+	 * @brief Check keyboard input
+	 * 
+	 */
 	void checkInput();
 
-	/// Clear tail cell
+	/**
+	 * @brief Clear tail cell
+	 * 
+	 */
 	void clearTail();
 
-	/// Perform movement
+	/**
+	 * @brief Perform snake movement mechanics
+	 * 
+	 * @param direction 
+	 */
 	void performMove(eDirection direction);
 
-	/// Check for game over
+	/**
+	 * @brief Check provided cell for game over conditions (usually new head)
+	 * 
+	 * @param coordToCheck 
+	 * @return true 
+	 * @return false 
+	 */
 	bool isGameOver(const COORD& coordToCheck);
 
-	/// Initialization completed
+	/**
+	 * @brief Initialization status
+	 * 
+	 */
 	bool mIsInitialized = true;
 
-	/// The item generator that we will use for checking fruit
+	/**
+	 * @brief The item generator that we will use for checking fruit
+	 * 
+	 */
 	SnakeModeItemGenerator& mSnakeModeItemGenerator;
 
-	/// The player assigned to this snake item
+	/**
+	 * @brief The player assigned to this snake item
+	 * 
+	 */
 	Player* mPlayer = nullptr;
 
-	/// Is game over
+	/**
+	 * @brief Is game over
+	 * 
+	 */
 	bool mIsGameOver = false;
 
-	/// Snake game logic items
-	/// We will hold snake body content as deque
-	/// separated from position data to prevent unnecessary updates
+	/**
+	 * @brief  Snake game logic items. We will hold snake body content as deque separated from position data to prevent unnecessary updates
+	 */
 	std::deque<int> mSnakeBodyContent;
 
-	/// Hold position of each content starting from head
+	/**
+	 * @brief Hold position of each content starting from head
+	 * 
+	 */
 	std::deque<COORD> mSnakeBody;
 
-	/// The cell that should be used as start point for clear
-	/// This will be the tail of previous tick
+	/**
+	 * @brief The cell that should be used as start point for clear. This will be the tail of previous tick
+	 * 
+	 */
 	COORD mCellToClear;	
 
-	/// Add body part snake
+	/**
+	 * @brief Add body part to snake conditions flag
+	 * 
+	 */
 	bool mAddBodyPart = false;	 
 	int mMovementLeftToAdd = 0;
 	int mNewBodyPartContent = 0;
 
-	/// The list of cell items
+	/**
+	 * @brief Current snake direction
+	 * 
+	 */
 	eDirection mCurrentDirection = DIRECTION_RIGHT;
 
-	/// Initiated direction (will be more useful for networking)
+	/**
+	 * @brief Initiated direction (will be more useful for networking)
+	 * 
+	 */
 	eDirection mInitiatedDirection = DIRECTION_RIGHT;
 
-	/// The accumulated time since last move
+	/**
+	 * @brief The accumulated time since last move in miliseconds
+	 * 
+	 */
 	float mAccumulatedTime = 0;
 
-	/// The item move timeout in milliseconds
+	/**
+	 * @brief The snake move timeout in milliseconds
+	 * 
+	 */
 	const float cInitialTimeOut = 250.0F;
+
+	/**
+	 * @brief The variable that will be used to track snake movement
+	 * 
+	 */	
 	float mMoveTimeout = cInitialTimeOut;
 
-	/// Ignore consecutive keyboard inputs till previous one is applied
+	/**
+	 * @brief Ignore consecutive keyboard inputs till previous one is applied
+	 * 
+	 */
 	bool mIgnoreInput = false;
 
-	/// Whether use keyboard or not
+	/**
+	 * @brief Whether use keyboard or not
+	 * 
+	 */
 	bool mUseKeyboard = true;
 
-	/// Tron mode
+	/**
+	 * @brief Current snake game mode
+	 * 
+	 */
 	bool mIsTronModeEnabled = true;
 
-	/// Border to prevent item get out scope
+	/**
+	 * @brief The game level border to prevent item get out scope
+	 * 
+	 */
 	RECT mBorder{ 2, 3, 117, 28 };			
 };
 

@@ -1,8 +1,8 @@
 /**
- * \file    SnakeGameScreen.h
- * \date    2018/10/28
- * \author  yazilimperver
- * \brief   
+ * @file    SnakeGameScreen.h
+ * @date    2018/10/28
+ * @author  yazilimperver
+ * @brief   
  * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef SNAKEGAMESCREEN_H__

@@ -67,8 +67,11 @@ void ConsoleSnakeGame::update(float tickTime)
 			// Update player scores
 			this->updateScores();
 
-			// Update fruit generator
-			mFruitGenerator.update(tickTime);
+			// Update fruit generator. No need to update generator in case of fruit generator
+			if (GameMode::eGameMode_Tron != mGameMode)
+			{
+				mFruitGenerator.update(tickTime);
+			}
 		}
 		else
 		{

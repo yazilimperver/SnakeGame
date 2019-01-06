@@ -1,15 +1,15 @@
 /**
- * \file    GameMode.h
- * \date    2018/12/01
- * \author  yazilimperver
- * \brief   
+ * @file    GameMode.h
+ * @date    2018/12/01
+ * @author  yazilimperver
+ * @brief   
  * Copyright � 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef GAMEMODE_H__
 #define GAMEMODE_H__
 
 /**
- * @brief The game mode which will determine the snake game mechanics
+ * @brief The game mode which will be used in snake game mechanics
  * 
  */
 enum class GameMode : int

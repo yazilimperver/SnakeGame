@@ -129,7 +129,7 @@ void Menu::setStartPosition(int startRow, int centerCol)
 	mCenterColumn = centerCol;
 }
 
-void Menu::setListener(IMenuLister* val)
+void Menu::setListener(IMenuListener* val)
 {
 	mListener = val;
 }

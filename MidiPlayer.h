@@ -1,8 +1,8 @@
 /**
- * \file    MidiPlayer.h
- * \date    2018/12/10
- * \author  yazilimperver
- * \brief   The midi playing code copied from http://blog.fourthwoods.com/2012/02/24/playing-midi-files-in-windows-part-5/
+ * @file    MidiPlayer.h
+ * @date    2018/12/10
+ * @author  yazilimperver
+ * @brief   The midi playing code copied from http://blog.fourthwoods.com/2012/02/24/playing-midi-files-in-windows-part-5/
  *          
  * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
@@ -15,8 +15,6 @@
 #include <condition_variable>
 #include <atomic>
 
-/// TODO: This should wake a thread that start to play music
-///       and continuously play it as long as required
 /// The player thread wait for next play request where it will play the music with given parameters
 class MidiPlayer
 {

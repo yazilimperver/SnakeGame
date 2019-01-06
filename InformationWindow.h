@@ -1,8 +1,8 @@
 /**
- * \file    InformationWindow.h
- * \date    2018/12/01
- * \author  yazilimperver
- * \brief   Responsible for displaying information about current game
+ * @file    InformationWindow.h
+ * @date    2018/12/01
+ * @author  yazilimperver
+ * @brief   Responsible for displaying information about current game
  * Copyright � 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef INFORMATION_WINDOW_H__

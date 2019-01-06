@@ -1,8 +1,8 @@
 /**
- * \file    ConsoleCellItem.h
- * \date    2018/10/21
- * \author  yazilimperver
- * \brief   
+ * @file    ConsoleCellItem.h
+ * @date    2018/10/21
+ * @author  yazilimperver
+ * @brief   
  * Copyright � 2018, <yazilimpervergs@gmail.com>
  */
 #ifndef CONSOLECELLITEM_H__

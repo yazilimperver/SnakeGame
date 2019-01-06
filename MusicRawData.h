@@ -1,15 +1,19 @@
 /**
- * \file    MusicRawData.h
- * \date    2018/12/11
- * \author  yazilimperver
- * \brief   
- * Copyright © 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
+ * @file    MusicRawData.h
+ * @date    2018/12/11
+ * @author  yazilimperver
+ * @brief   
+ * Copyright ï¿½ 2018, Check Bottom For Copyright Notice <yazilimpervergs@gmail.com>
  */
 #ifndef MUSICRAWDATA_H__
 #define MUSICRAWDATA_H__
 
 #define MUSIC_RAW_DATA_SIZE 36241UL + 1
 
+/**
+ * @brief The binary data of midi music played during game play
+ * 
+ */
 extern const unsigned char gMusicData[MUSIC_RAW_DATA_SIZE];
 
 #endif // MUSICRAWDATA_H__
