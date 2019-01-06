@@ -320,7 +320,7 @@ void ConsoleSnakeGame::prepareGameScreen()
 
 	/// Display Title
 	setColor(Color::eColor_red, Color::eColor_yellow);
-	displayCenteredText("Multi-player Snake Game (c) 2018", 120, 0);
+	displayCenteredText("Begum The Snake Tamer (c) 2019", 120, 0);
 
 	/// Display information console
 	mConsoleInfo.setGameMode(mGameMode);

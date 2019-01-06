@@ -122,7 +122,7 @@ extern void setConsoleInformation(short left, short top, short width, short heig
  * @return int The integer representation of obtained char
  * Returns -1 if no input is provided
  */
-extern intgetNonBlockingChar();
+extern int getNonBlockingChar();
 
 /**
  * @brief A Mersenne Twister algorithm which gives you good tradeoff between randoness and speed.

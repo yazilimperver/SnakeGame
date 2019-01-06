@@ -50,7 +50,7 @@ constexpr char snakeLogo[] = R"(
                                                 :+shdNMMMMMMMMMMMMMMMMMNmyo:.                                          
                                                        .-:/+++ooo++/:-.                                                
                                                                                                                        
-		                              ~~~~~ WELCOME TO uSNAKE GAME ~~~~~
+		                       ~~~~~ WELCOME TO BEGUM THE SNAKE TAMER GAME ~~~~~
 )";
 
 void LogoDisplayer::DisplaySnakeLogo()
